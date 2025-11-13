@@ -1,128 +1,91 @@
-<body class="bg-light">
-	<?php include("presentacion/encabezado.php")?>
+<body class="bg-gradient bg-light">
 
-	<nav class="bg-primary text-white py-2">
-		<div
-			class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-			<div class="fw-bold fs-5 mb-2 mb-md-0">Matasanos EPS</div>
-			<div
-				class="d-flex flex-column flex-md-row gap-3 text-center text-md-start">
-				<a href="#" class="text-white text-decoration-none">Agendar citas</a>
-				<a href="#" class="text-white text-decoration-none">Mas información</a>
-				<a href="?pid=<?php echo base64_encode("presentacion/autenticar.php") ?>" class="text-white text-decoration-none"><i
-					class="fas fa-user me-1"></i>Autenticar</a>
-			</div>
-		</div>
-	</nav>
+  <!-- Encabezado -->
+  <div class="container py-4 bg-primary text-white rounded-bottom shadow">
+    <div class="row align-items-center">
+      <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+        <a href="?">
+          <img src="img/AltairAir.png" alt="Logo Altair Air" class="img-fluid rounded" style="width: 160px; height: auto;">
+        </a>
+      </div>
+      <div class="col-md-8 text-center text-md-start">
+        <h1 class="fw-bold">Altair Air</h1>
+        <p class="mb-0 fst-italic">Tu destino, entre las estrellas ✈️</p>
+      </div>
+    </div>
+  </div>
 
+  <!-- Menú de pestañas -->
+  <div class="container mt-4">
+    <ul class="nav nav-tabs justify-content-center bg-white shadow-sm rounded" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active text-primary fw-semibold" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+          type="button" role="tab" aria-controls="home" aria-selected="true">
+          <i class="bi bi-house-door-fill me-1"></i>Inicio
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link text-primary fw-semibold" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+          type="button" role="tab" aria-controls="profile" aria-selected="false">
+          <i class="bi bi-person-circle me-1"></i>Perfil
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link text-primary fw-semibold" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages"
+          type="button" role="tab" aria-controls="messages" aria-selected="false">
+          <i class="bi bi-chat-left-text-fill me-1"></i>Mensajes
+        </button>
+      </li>
+    </ul>
+  </div>
 
-	<div class="container my-5">
-		<div class="text-center mb-5">
-			<h2 class="text-primary fw-bold">Nuestros Servicios</h2>
-			<p class="text-dark opacity-75">Ofrecemos atencion medica integral y
-				especializada</p>
-		</div>
+  <!-- Contenido de pestañas -->
+  <div class="tab-content container py-4">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="card border-0 shadow-sm p-4">
+        <h4 class="text-primary fw-bold">Bienvenido a Altair Air</h4>
+        <p class="text-muted">Explora nuestros destinos, promociones y servicios premium.</p>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="card border-0 shadow-sm p-4">
+        <h4 class="text-primary fw-bold">Tu perfil</h4>
+        <p class="text-muted">Consulta tu información personal y tus viajes recientes.</p>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+      <div class="card border-0 shadow-sm p-4">
+        <h4 class="text-primary fw-bold">Centro de mensajes</h4>
+        <p class="text-muted">Aquí verás tus notificaciones, actualizaciones y ofertas exclusivas.</p>
+      </div>
+    </div>
+  </div>
 
-		<div class="row row-cols-1 row-cols-md-3 g-4">
+  <!-- Sección adaptable -->
+  <div class="container my-4">
+    <div class="row justify-content-center align-items-stretch g-4">
+      <div class="col-md-4 col-sm-12 bg-white p-4 rounded shadow-sm text-center border-top border-4 border-primary">
+        <h5 class="text-primary fw-bold">🌍 Destinos</h5>
+        <p class="text-muted">Descubre los lugares más increíbles con Altair Air.</p>
+      </div>
+      <div class="col-md-4 col-sm-12 bg-white p-4 rounded shadow-sm text-center border-top border-4 border-info">
+        <h5 class="text-info fw-bold">🎫 Reservas</h5>
+        <p class="text-muted">Reserva tu vuelo de forma rápida y segura.</p>
+      </div>
+      <div class="col-md-4 col-sm-12 bg-white p-4 rounded shadow-sm text-center border-top border-4 border-success">
+        <h5 class="text-success fw-bold">💬 Soporte</h5>
+        <p class="text-muted">Atención al cliente 24/7 para acompañarte en tu viaje.</p>
+      </div>
+    </div>
+  </div>
 
-			<div class="col">
-				<div class="card h-100 text-center">
-					<div class="card-body">
-						<h5 class="card-title">
-							<i class="fas fa-check-circle text-success me-2"></i> Asignar
-							cita
-						</h5>
-						<p class="card-text">Programa una nueva cita medica con nuestros
-							profesionales de la salud.</p>
-						<a href="#" class="btn btn-primary">Agendar</a>
-					</div>
-				</div>
-			</div>
+  <!-- Pie de página -->
+  <footer class="text-center py-3 mt-4 bg-primary text-white shadow-sm">
+    © 2025 <strong>Altair Air</strong> — Todos los derechos reservados ✈️
+  </footer>
 
+  <!-- Bootstrap + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-			<div class="col">
-				<div class="card h-100 text-center">
-					<div class="card-body">
-						<h5 class="card-title">
-							<i class="fas fa-clock text-warning me-2"></i> Reagendar cita
-						</h5>
-						<p class="card-text">No puedes asistir? Cambia la fecha y hora de
-							tu cita facilmente.</p>
-						<a href="#" class="btn btn-primary">Reagendar</a>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="col">
-				<div class="card h-100 text-center">
-					<div class="card-body">
-						<h5 class="card-title">
-							<i class="fas fa-times-circle text-danger me-2"></i> Cancelar
-							cita
-						</h5>
-						<p class="card-text">Cancela tu cita medica con antelacion si no
-							puedes asistir.</p>
-						<a href="#" class="btn btn-primary">Cancelar</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row mt-3">
-			<div class="col">
-				<div class="card">
-					<div class="card-header"><h4>Especialidades</h4></div>
-					<div class="card-body">
-        				<?php 
-        				$especialidad = new Especialidad();
-        				$especialidades = $especialidad -> consultar();
-        				echo "<ul>";
-        				foreach($especialidades as $esp){
-        				    echo "<li>" . $esp -> getNombre();
-        				    $medico = new Medico("","","","","","",$esp);
-        				    $medicos = $medico -> consultarPorEspecialidad();
-        				    if (count($medicos) > 0) {
-        				        echo "<ul>";
-        				        foreach ($medicos as $med) {
-        				            echo "<li>" . $med -> getNombre() . " " . $med -> getApellido() . "</li>";
-        				        }
-        				        echo "</ul>";
-        				    }
-        				    echo "</li>";
-        				}
-        				echo "</ul>";
-        				?>			
-    				</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row mt-3">
-			<div class="col">
-				<div class="card">
-					<div class="card-header"><h4>Citas</h4></div>
-					<div class="card-body">
-        				<?php 
-        				$cita = new Cita();
-        				$citas = $cita -> consultar();
-        				echo "<table class='table table-striped table-hover'>";
-        				echo "<tr><td>Id</td><td>Fecha</td><td>Hora</td><td>Paciente</td><td>Medico</td><td>Consultorio</td></tr>";
-        				foreach($citas as $cit){
-        				    echo "<tr>";
-        				    echo "<td>" . $cit -> getId() . "</td>";
-        				    echo "<td>" . $cit -> getFecha() . "</td>";
-        				    echo "<td>" . $cit -> getHora() . "</td>";
-        				    echo "<td>" . $cit -> getPaciente() -> getNombre() . " " . $cit -> getPaciente() -> getApellido() . "</td>";
-        				    echo "<td>" . $cit -> getMedico() -> getNombre() . " " . $cit -> getMedico() -> getApellido() . "</td>";
-        				    echo "<td>" . $cit -> getConsultorio() -> getNombre() . "</td>";
-        				    echo "</tr>";
-        				}
-        				echo "</table>";
-        				?>			
-    				</div>
-				</div>
-			</div>
-		</div>
-	</div>
 </body>

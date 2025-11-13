@@ -16,7 +16,7 @@ require ("logica/EstadoCita.php");
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Matasanos EPS</title>
+<title>Altair Air</title>
 
 <!-- Bootstrap -->
 <link
@@ -33,9 +33,11 @@ require ("logica/EstadoCita.php");
 <?php 
 
 $paginas_sin_autenticacion = array(
-    /*"presentacion/inicio.php",
+    "presentacion/inicio.php",
+    /*
     "presentacion/autenticar.php",
-    "presentacion/noAutorizado.php",*/
+    "presentacion/noAutorizado.php",
+    */
 );
 
 $paginas_con_autenticacion = array(
@@ -65,8 +67,6 @@ if(!isset($_GET["pid"])){
         echo "error 404";
     }
 }
-
-    
 ?>
 
 </html>
