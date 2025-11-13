@@ -1,7 +1,7 @@
 <body class="bg-gradient bg-light">
 
   <!-- Encabezado -->
-  <div class="container py-4 bg-primary text-white rounded-bottom shadow">
+  <div class="container py-4 bg-success text-white rounded-bottom shadow">
     <div class="row align-items-center">
       <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
         <a href="?">
@@ -19,19 +19,19 @@
   <div class="container mt-4">
     <ul class="nav nav-tabs justify-content-center bg-white shadow-sm rounded" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
-        <button class="nav-link active text-primary fw-semibold" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+        <button class="nav-link active text-success fw-semibold" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
           type="button" role="tab" aria-controls="home" aria-selected="true">
           <i class="bi bi-house-door-fill me-1"></i>Inicio
         </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link text-primary fw-semibold" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+        <button class="nav-link text-success fw-semibold" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
           type="button" role="tab" aria-controls="profile" aria-selected="false">
           <i class="bi bi-person-circle me-1"></i>Perfil
         </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link text-primary fw-semibold" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages"
+        <button class="nav-link text-success fw-semibold" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages"
           type="button" role="tab" aria-controls="messages" aria-selected="false">
           <i class="bi bi-chat-left-text-fill me-1"></i>Mensajes
         </button>
@@ -43,19 +43,19 @@
   <div class="tab-content container py-4">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <div class="card border-0 shadow-sm p-4">
-        <h4 class="text-primary fw-bold">Bienvenido a Altair Air</h4>
+        <h4 class="text-success fw-bold">Bienvenido a Altair Air</h4>
         <p class="text-muted">Explora nuestros destinos, promociones y servicios premium.</p>
       </div>
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
       <div class="card border-0 shadow-sm p-4">
-        <h4 class="text-primary fw-bold">Tu perfil</h4>
+        <h4 class="text-success fw-bold">Tu perfil</h4>
         <p class="text-muted">Consulta tu información personal y tus viajes recientes.</p>
       </div>
     </div>
     <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">
       <div class="card border-0 shadow-sm p-4">
-        <h4 class="text-primary fw-bold">Centro de mensajes</h4>
+        <h4 class="text-success fw-bold">Centro de mensajes</h4>
         <p class="text-muted">Aquí verás tus notificaciones, actualizaciones y ofertas exclusivas.</p>
       </div>
     </div>
@@ -64,8 +64,8 @@
   <!-- Sección adaptable -->
   <div class="container my-4">
     <div class="row justify-content-center align-items-stretch g-4">
-      <div class="col-md-4 col-sm-12 bg-white p-4 rounded shadow-sm text-center border-top border-4 border-primary">
-        <h5 class="text-primary fw-bold">🌍 Destinos</h5>
+      <div class="col-md-4 col-sm-12 bg-white p-4 rounded shadow-sm text-center border-top border-4 border-success">
+        <h5 class="text-success fw-bold">🌍 Destinos</h5>
         <p class="text-muted">Descubre los lugares más increíbles con Altair Air.</p>
       </div>
       <div class="col-md-4 col-sm-12 bg-white p-4 rounded shadow-sm text-center border-top border-4 border-info">
@@ -80,7 +80,7 @@
   </div>
 
   <!-- Pie de página -->
-  <footer class="text-center py-3 mt-4 bg-primary text-white shadow-sm">
+  <footer class="text-center py-3 mt-4 bg-success text-white shadow-sm">
     © 2025 <strong>Altair Air</strong> — Todos los derechos reservados ✈️
   </footer>
 
