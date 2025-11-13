@@ -1,5 +1,6 @@
 <?php 
 session_start();
+/*
 require ("logica/Especialidad.php");
 require ("logica/Medico.php");
 require ("logica/Paciente.php");
@@ -7,7 +8,7 @@ require ("logica/Cita.php");
 require ("logica/Consultorio.php");
 require ("logica/Admin.php");
 require ("logica/EstadoCita.php");
-
+*/
 
 ?>
 <!DOCTYPE html>
@@ -32,18 +33,18 @@ require ("logica/EstadoCita.php");
 <?php 
 
 $paginas_sin_autenticacion = array(
-    "presentacion/inicio.php",
+    /*"presentacion/inicio.php",
     "presentacion/autenticar.php",
-    "presentacion/noAutorizado.php",
+    "presentacion/noAutorizado.php",*/
 );
 
 $paginas_con_autenticacion = array(
-    "presentacion/sesionAdmin.php",
+    /*"presentacion/sesionAdmin.php",
     "presentacion/sesionMedico.php",
     "presentacion/sesionPaciente.php",
     "presentacion/cita/consultarCita.php",
     "presentacion/paciente/buscarPaciente.php",
-    "presentacion/medico/editarFotoPerfil.php",
+    "presentacion/medico/editarFotoPerfil.php",*/
 );
 
 
