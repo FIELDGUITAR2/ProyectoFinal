@@ -19,6 +19,8 @@ CREATE TABLE Admin(
 CREATE TABLE Piloto(
     idPiloto INT AUTO_INCREMENT,
     nombres VARCHAR(100) NOT NULL,
+    correo VARCHAR(100) NOT NULL,
+    clave VARCHAR(100) NOT NULL,
     apellidos VARCHAR(100) NOT NULL,
     telefono VARCHAR(100) NOT NULL,
     foto VARCHAR(200),
