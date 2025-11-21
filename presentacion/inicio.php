@@ -27,7 +27,7 @@
       <li class="nav-item" role="presentation">
         <button class="nav-link text-success fw-semibold" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
           type="button" role="tab" aria-controls="profile" aria-selected="false">
-          <i class="bi bi-person-circle me-1"></i>Perfil
+          <i class="bi bi-person-circle me-1"></i>Iniciar sesion
         </button>
       </li>
       <li class="nav-item" role="presentation">
@@ -39,7 +39,6 @@
     </ul>
   </div>
 
-  <!-- Contenido de pestañas -->
   <div class="tab-content container py-4">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <div class="card border-0 shadow-sm p-4">
@@ -48,11 +47,38 @@
       </div>
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <div class="card border-0 shadow-sm p-4">
-        <h4 class="text-success fw-bold">Tu perfil</h4>
-        <p class="text-muted">Consulta tu información personal y tus viajes recientes.</p>
+      <div class="d-flex justify-content-center mt-4">
+        <div class="card border-0 shadow-sm p-4" style="max-width: 380px; width: 100%;">
+
+          <img src="img/AltairAir.png" alt="Altair Air" class="img-fluid rounded mb-3">
+
+          <div class="card-body">
+            <h4 class="card-title text-center mb-3 text-success">Iniciar sesión</h4>
+
+            <form action="#" method="POST">
+              <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="email" name="email"
+                  placeholder="tucorreo@example.com" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="clave" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="clave" name="clave"
+                  placeholder="••••••••" required>
+              </div>
+
+              <button type="submit" class="btn w-100"
+                style="background-color: #1B5E20; color: #FFFDE7;">
+                Ingresar
+              </button>
+            </form>
+          </div>
+
+        </div>
       </div>
     </div>
+
     <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">
       <div class="card border-0 shadow-sm p-4">
         <h4 class="text-success fw-bold">Centro de mensajes</h4>
