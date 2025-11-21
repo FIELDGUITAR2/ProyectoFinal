@@ -69,13 +69,28 @@ INSERT INTO Pais (nombrePais) VALUES
 -- ============================
 -- CIUDAD
 -- ============================
-INSERT INTO Ciudad (nombreCiudad, idPais) VALUES
-('Bogotá', 1),
-('Medellín', 1),
-('Ciudad de México', 2),
-('Cancún', 2),
-('Miami', 3),
-('New York', 3);
+INSERT INTO Ciudad (nombreCiudad, idPais, descripcion) VALUES
+('Bogotá', 1, 'Capital de Colombia, centro económico y cultural'),
+('Medellín', 1, 'Ciudad de la eterna primavera'),
+('Cali', 1, 'Capital del Valle del Cauca'),
+('Cartagena', 1, 'Ciudad turística y patrimonio histórico'),
+
+('Lima', 2, 'Capital de Perú'),
+('Cusco', 2, 'Ciudad histórica del Imperio Inca'),
+('Arequipa', 2, 'La ciudad blanca'),
+
+('Ciudad de México', 3, 'Capital de México'),
+('Guadalajara', 3, 'Importante centro tecnológico y cultural'),
+('Monterrey', 3, 'Centro industrial del norte de México'),
+
+('Buenos Aires', 4, 'Capital de Argentina'),
+('Córdoba', 4, 'Ciudad histórica del centro del país'),
+('Rosario', 4, 'Ciudad portuaria clave'),
+
+('Madrid', 5, 'Capital de España'),
+('Barcelona', 5, 'Ciudad portuaria y cultural importante'),
+('Valencia', 5, 'Ciudad conocida por la paella y las fallas');
+
 
 -- ============================
 -- AEROPUERTO

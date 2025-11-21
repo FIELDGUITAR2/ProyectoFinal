@@ -21,5 +21,9 @@
         public function getPais() {
             return $this->pais;
         }
+
+        public function mostrarCiudades(){
+            
+        }
     }
 ?>

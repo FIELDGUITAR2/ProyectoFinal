@@ -6,6 +6,8 @@
         <td>Ubicación</td>
     </tr>
     <?php
+    require_once('logica/Ciudad.php');
+    
     foreach ($lugares as $lugar) {
         echo "<tr>";
         echo "<td>" . htmlspecialchars($lugar->obtenerId()) . "</td>";
