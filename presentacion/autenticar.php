@@ -1,5 +1,5 @@
 <?php 
-/*if(isset($_GET["sesion"])){
+if(isset($_GET["sesion"])){
     if($_GET["sesion"] == "false"){
         session_destroy();
     }
@@ -14,8 +14,8 @@ if(isset($_POST["autenticar"])){
         $_SESSION["rol"] = "admin";
         header("Location: ?pid=" . base64_encode("presentacion/sesionAdmin.php"));
     }else {
-        $medico = new Medico("", "", "", $correo, $clave);
-        if($medico -> autenticar()){
+        $piloto = new Piloto("", "", "", $correo, $clave);
+        if($piloto -> Autenticar()){
             $_SESSION["id"] = $medico -> getId();
             $_SESSION["rol"] = "medico";
             header("Location: ?pid=" . base64_encode("presentacion/sesionMedico.php"));
