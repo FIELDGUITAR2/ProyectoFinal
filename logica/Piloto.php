@@ -1,5 +1,7 @@
 <?php
-    require_once "Persona.php";
+    require_once ('logica/Persona.php');
+    require_once ('persistencia/PilotoDAO.php');
+    require_once ('persistencia/Conexion.php');
     class Piloto extends Persona{
         
         private $edad;
@@ -57,6 +59,22 @@
         public function getTelefono()
         {
                 return $this->telefono;
+        }
+
+        public function autenticar()
+        {
+                $conexion = new Conexion();
+                $pilotoDAO = new PilotoDAO();
+                $conexion->abrir();
+                $conexion->ejecutar($pilotoDAO->autenticar());                
+                if(($datos = $conexion->registro()) != null)
+                {
+                        $piloto = new Piloto($datos[0]);                        
+                        $conexion -> cerrar();
+                        return true;
+                }
+                $conexion->cerrar();
+                return false;
         }
     }
 ?>

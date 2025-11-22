@@ -26,4 +26,20 @@ class AdminDAO{
                 from Admin
                 where idAdmin = '" . $this -> id . "'";
     }
+
+    /**
+     * Get the value of apellido
+     */ 
+    public function getApellido()
+    {
+        return $this->apellido;
+    }
+
+    /**
+     * Get the value of nombre
+     */ 
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
 }

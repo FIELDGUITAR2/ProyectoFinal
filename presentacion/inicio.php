@@ -1,3 +1,6 @@
+<?php
+?>
+
 <body class="bg-gradient bg-light">
 
   <!-- Encabezado -->
@@ -46,6 +49,8 @@
         <p class="text-muted">Explora nuestros destinos, promociones y servicios premium.</p>
       </div>
     </div>
+
+    <!-- Iniciar sesion -->
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
       <div class="d-flex justify-content-center mt-4">
         <div class="card border-0 shadow-sm p-4" style="max-width: 380px; width: 100%;">
@@ -53,26 +58,11 @@
           <img src="img/AltairAir.png" alt="Altair Air" class="img-fluid rounded mb-3">
 
           <div class="card-body">
-            <h4 class="card-title text-center mb-3 text-success">Iniciar sesión</h4>
+            
 
-            <form action="#" method="POST">
-              <div class="mb-3">
-                <label for="email" class="form-label">Correo electrónico</label>
-                <input type="email" class="form-control" id="email" name="email"
-                  placeholder="tucorreo@example.com" required>
-              </div>
-
-              <div class="mb-3">
-                <label for="clave" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="clave" name="clave"
-                  placeholder="••••••••" required>
-              </div>
-
-              <button type="submit" class="btn w-100"
-                style="background-color: #1B5E20; color: #FFFDE7;">
-                Ingresar
-              </button>
-            </form>
+            <a href="?pid=<?php echo base64_encode('presentacion/autenticar.php') ?>">
+              <h4 class="card-title text-center mb-3 text-success">Iniciar sesión</h4>
+            </a>
           </div>
 
         </div>

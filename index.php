@@ -34,9 +34,11 @@ require ("logica/EstadoCita.php");
 
 $paginas_sin_autenticacion = array(
     "presentacion/inicio.php",
+    "presentacion/autenticar.php",
+    "presentacion/noAutorizado.php"
     /*
     "presentacion/autenticar.php",
-    "presentacion/noAutorizado.php",
+    ,
     */
 );
 

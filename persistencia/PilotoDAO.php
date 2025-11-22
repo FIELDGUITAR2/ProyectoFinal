@@ -58,5 +58,12 @@
         {
                 return $this->telefono;
         }
+
+        public function autenticar()
+        {
+                return "
+                select idPiloto from Piloto WHERE correo = '".$this->getCorreo()."' and clave = md5('".$this->getClave()."');
+                ";
+        }
     }
 ?>

@@ -1,5 +1,7 @@
 <?php
-require_once "Persona.php";
+require_once('logica/Persona.php');
+require_once('persistencia/PilotoDAO.php');
+require_once('persistencia/Conexion.php');
 
 class Pasajero extends Persona
 {
@@ -17,7 +19,7 @@ class Pasajero extends Persona
 
     /**
      * Get the value of foto
-     */ 
+     */
     public function getFoto()
     {
         return $this->foto;
@@ -25,7 +27,7 @@ class Pasajero extends Persona
 
     /**
      * Get the value of idEstadoPersona
-     */ 
+     */
     public function getIdEstadoPersona()
     {
         return $this->idEstadoPersona;
@@ -33,9 +35,14 @@ class Pasajero extends Persona
 
     /**
      * Get the value of telefono
-     */ 
+     */
     public function getTelefono()
     {
         return $this->telefono;
+    }
+
+    public function autenticar()
+    {
+        return false;
     }
 }

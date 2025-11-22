@@ -9,9 +9,5 @@ include ("presentacion/encabezado.php");
 include ("presentacion/menuAdmin.php");
 ?>
 
-
-
-
-
 </body>
 
