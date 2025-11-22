@@ -5,7 +5,7 @@
 				style="width: 150px; height: auto;"></a>
 		</div>
 		<div class="col-md-8 text-center text-md-start">
-			<h1 class="text-primary">Altair Air</h1>
+			<h1 class="text-success">Altair Air</h1>
 			<p class="text-muted">Tu destino, entre las estrellas ✈️</p>
 		</div>
 	</div>

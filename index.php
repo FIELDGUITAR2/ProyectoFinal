@@ -1,5 +1,10 @@
 <?php 
 session_start();
+
+require_once('logica/Admin.php');
+require_once('logica/Piloto.php');
+require_once('logica/Pasajero.php');
+require_once('logica/Persona.php');
 /*
 require ("logica/Especialidad.php");
 require ("logica/Medico.php");
@@ -43,8 +48,10 @@ $paginas_sin_autenticacion = array(
 );
 
 $paginas_con_autenticacion = array(
-    /*"presentacion/sesionAdmin.php",
-    "presentacion/sesionMedico.php",
+    "presentacion/sesionAdmin.php",
+    "presentacion/sesionPiloto.php",
+    "presentacion/sesionPasajero.php"
+    /*"presentacion/sesionMedico.php",
     "presentacion/sesionPaciente.php",
     "presentacion/cita/consultarCita.php",
     "presentacion/paciente/buscarPaciente.php",

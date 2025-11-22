@@ -8,6 +8,17 @@ $error = false;
 if (isset($_POST["autenticar"])) {
 	$correo = $_POST["correo"];
 	$clave = $_POST["clave"];
+
+	echo $correo;
+	echo $clave;
+	$admin = new Admin("", "", "", $correo, $clave);
+	if ($admin->autenticar()) {
+		$_SESSION["id"] = $admin->getId();
+		$_SESSION["rol"] = "admin";
+		header("Location: ?pid=" . base64_encode("presentacion/sesionAdmin.php"));
+		//header("Location: ?pid=" . base64_encode("presentacion/sesionAdmin.php"));
+	}
+
 	$admin = new Admin("", "", "", $correo, $clave);
 	if ($admin->autenticar()) {
 		$_SESSION["id"] = $admin->getId();
@@ -30,6 +41,7 @@ if (isset($_POST["autenticar"])) {
 			}
 		}
 	}
+
 }
 ?>
 
@@ -83,7 +95,7 @@ if (isset($_POST["autenticar"])) {
 			<div class="col-4"></div>
 			<div class="col-4">
 				<div class="card">
-					<div class="card-header bg-primary">
+					<div class="card-header bg-success text-white">
 						<h4>Autenticar</h4>
 					</div>
 					<div class="card-body">
@@ -94,7 +106,7 @@ if (isset($_POST["autenticar"])) {
 							<div class="mb-3">
 								<input type="password" class="form-control" name="clave" placeholder="Clave">
 							</div>							
-							<button type="submit" class="btn btn-primary" name="autenticar">Autenticar</button>
+							<button type="submit" class="btn btn-warning" name="autenticar">Autenticar</button>
 						</form>
     					<?php
 						if ($error) {

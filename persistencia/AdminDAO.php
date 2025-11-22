@@ -22,7 +22,7 @@ class AdminDAO{
     }
     
     public function consultar(){
-        return "select nombre, apellido, correo
+        return "select nombre, correo
                 from Admin
                 where idAdmin = '" . $this -> id . "'";
     }
