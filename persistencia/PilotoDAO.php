@@ -65,5 +65,24 @@
                 select idPiloto from Piloto WHERE correo = '".$this->getCorreo()."' and clave = md5('".$this->getClave()."');
                 ";
         }
+
+        public function consultarPilotos()
+        {
+                return"
+                        select 
+                        p.idPiloto, 
+                        p.nombres,
+                        p.apellidos, 
+                        p.correo, 
+                        p.foto, 
+                        e.nombreEstado,
+                        p.telefono
+                        from
+                        Piloto p
+                        INNER JOIN 
+                        EstadoPersona e on p.idEstadoPersona = e.idEstadoPersona
+                        
+                ";
+        }
     }
 ?>

@@ -76,5 +76,33 @@
                 $conexion->cerrar();
                 return false;
         }
+
+        public function consultarPilotos()
+        {
+                $conexion = new Conexion();
+                $pilotoDAO = new PilotoDAO();
+                $conexion->abrir();
+                $conexion->ejecutar($pilotoDAO->consultarPilotos());                
+                $conexion->registro();
+                $lista = array();
+                while(($dato = $conexion->registro()) != null)
+                {
+                        $piloto = new Piloto(
+                        $dato[0], 
+                        $dato[1], 
+                        $dato[2], 
+                        $dato[3], 
+                        "", 
+                        "", 
+                        "", 
+                        $dato[4], 
+                        $dato[5], 
+                        $dato[6]);
+                        array_push($lista, $piloto);
+                        
+                }
+                $conexion->cerrar();
+                return $lista;
+        }
     }
 ?>

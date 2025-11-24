@@ -9,8 +9,6 @@ if (isset($_POST["autenticar"])) {
 	$correo = $_POST["correo"];
 	$clave = $_POST["clave"];
 
-	echo $correo;
-	echo $clave;
 	$admin = new Admin("", "", "", $correo, $clave);
 	if ($admin->autenticar()) {
 		$_SESSION["id"] = $admin->getId();
