@@ -1,8 +1,5 @@
 <?php
-
-require_once ('persistencia/Conexion.php');
-require_once ('persistencia/EstadoPersonaDAO.php');
-    class EstadoPersona{
+    class EstadoPersonaDAO{
         private $idEstadoPersona;
         private $NombreEstado;
 
@@ -30,17 +27,12 @@ require_once ('persistencia/EstadoPersonaDAO.php');
 
         public function consultar()
         {
-            $conexion = new Conexion();
-            $estadoPersonaDAO = new EstadoPersonaDAO();
-            $conexion -> ejecutar($estadoPersonaDAO -> consultar());
-            $resultado = $conexion -> registro();
-            $estadosPersonas = array();
-            while(($dato = $conexion -> registro()) != null){
-                $estadoPersona = new EstadoPersona($dato[0], $dato[1]);
-                array_push($estadosPersonas, $estadoPersona);
-            }
-            $conexion -> cerrar();
-            return $estadosPersonas;
+            return"
+                select idEstadoPersona, nombreEstado
+                from GrAlt_EstadoPersona
+            ";    
         }
+
+        
     }
 ?>

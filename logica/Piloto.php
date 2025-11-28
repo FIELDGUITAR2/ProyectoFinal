@@ -82,8 +82,7 @@
                 $conexion = new Conexion();
                 $pilotoDAO = new PilotoDAO();
                 $conexion->abrir();
-                $conexion->ejecutar($pilotoDAO->consultarPilotos());                
-                $conexion->registro();
+                $conexion->ejecutar($pilotoDAO->consultarPilotos());
                 $lista = array();
                 while(($dato = $conexion->registro()) != null)
                 {
@@ -94,7 +93,7 @@
                         $dato[3], 
                         "", 
                         "", 
-                        "", 
+                        $dato[7], 
                         $dato[4], 
                         $dato[5], 
                         $dato[6]);

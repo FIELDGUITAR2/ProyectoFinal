@@ -3,6 +3,16 @@ if ($_SESSION["rol"] != "admin") {
     header("Location: ?pid=" . base64_encode("presentacion/noAutorizado.php"));
 }
 $error = 0;
+
+if (isset($_POST['actualizar'])) {
+    $nombres          = $_POST['nombres'];
+    $apellidos        = $_POST['apellidos'];
+    $correo           = $_POST['correo'];
+    $telefono         = $_POST['telefono'];
+    $idEstadoPersona  = $_POST['idEstadoPersona'];
+    $idPiloto         = $_POST['idPiloto'];
+}
+
 ?>
 
 <body>
@@ -34,6 +44,7 @@ $error = 0;
                                 <th scope="col">Apellido</th>
                                 <th scope="col">Correo</th>
                                 <th scope="col">Teléfono</th>
+                                <th scope="col">Fecha de Nacimiento</th>
                                 <th scope="col">Estado</th>
                                 <th scope="col">Edit</th>
                             </tr>
@@ -54,6 +65,7 @@ $error = 0;
                                 echo "<td>" . $p->getApellido() . "</td>";
                                 echo "<td>" . $p->getCorreo() . "</td>";
                                 echo "<td>" . $p->getTelefono() . "</td>";
+                                echo "<td>" . $p->getFecha_nac() . "</td>";
 
                                 // Estado con badge de color
                                 $estado = $p->getIdEstadoPersona();
@@ -75,7 +87,6 @@ $error = 0;
                                         </button>
                                       </td>";
                                 echo "</tr>";
-                                
                             }
                             ?>
                         </tbody>
@@ -87,84 +98,91 @@ $error = 0;
 
     </div>
     <!-- Modal Editar Piloto -->
-<div class="modal fade" id="modalEditar" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+    <div class="modal fade" id="modalEditar" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
 
-            <div class="modal-header" style="background:#0b6623; color:white;">
-                <h5 class="modal-title">Editar Piloto</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                <div class="modal-header" style="background:#0b6623; color:white;">
+                    <h5 class="modal-title">Editar Piloto</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <form action="controlador/piloto/actualizarPiloto.php" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body row g-3">
+
+                        <input type="hidden" name="idPiloto" id="editId">
+
+                        <div class="col-md-6">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="nombres" id="editNombre" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Apellido</label>
+                            <input type="text" class="form-control" name="apellidos" id="editApellido" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Correo</label>
+                            <input type="email" class="form-control" name="correo" id="editCorreo" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Teléfono</label>
+                            <input type="text" class="form-control" name="telefono" id="editTelefono" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Estado</label>
+                            <select class="form-select" name="idEstadoPersona" id="editEstado">
+                                <?php
+
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Fecha de nacimiento</label>
+                            <input type="date" class="form-control" name="fecha_nac" id="editFechaNac" required>
+                        </div>
+
+                        <div class="col-md-6 text-center">
+                            <label class="form-label">Foto</label>
+                            <input class="form-control" type="file" name="foto">
+                            <img id="editFotoPreview" src=""
+                                class="img-thumbnail mt-2"
+                                style="height:80px; width:80px; object-fit:cover; border-radius:50%;">
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-success" name="actualizar">Guardar Cambios</button>
+                    </div>
+
+                </form>
+
             </div>
-
-            <form action="controlador/piloto/actualizarPiloto.php" method="POST" enctype="multipart/form-data">
-                <div class="modal-body row g-3">
-
-                    <input type="hidden" name="idPiloto" id="editId">
-
-                    <div class="col-md-6">
-                        <label class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="nombres" id="editNombre" required>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label">Apellido</label>
-                        <input type="text" class="form-control" name="apellidos" id="editApellido" required>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label">Correo</label>
-                        <input type="email" class="form-control" name="correo" id="editCorreo" required>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label">Teléfono</label>
-                        <input type="text" class="form-control" name="telefono" id="editTelefono" required>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label">Estado</label>
-                        <select class="form-select" name="idEstadoPersona" id="editEstado">
-                            <?php
-                                
-                            ?>
-                        </select>
-                    </div>
-
-                    <div class="col-md-6 text-center">
-                        <label class="form-label">Foto</label>
-                        <input class="form-control" type="file" name="foto">
-                        <img id="editFotoPreview" src="" 
-                             class="img-thumbnail mt-2"
-                             style="height:80px; width:80px; object-fit:cover; border-radius:50%;">
-                    </div>
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-success">Guardar Cambios</button>
-                </div>
-
-            </form>
-
         </div>
     </div>
-</div>
-<script>
-document.querySelectorAll('.editarBtn').forEach(btn => {
-    btn.addEventListener('click', () => {
+    <script>
+        document.querySelectorAll('.editarBtn').forEach(btn => {
+            btn.addEventListener('click', () => {
 
-        document.getElementById('editId').value = btn.dataset.id;
-        document.getElementById('editNombre').value = btn.dataset.nombre;
-        document.getElementById('editApellido').value = btn.dataset.apellido;
-        document.getElementById('editCorreo').value = btn.dataset.correo;
-        document.getElementById('editTelefono').value = btn.dataset.telefono;
-        document.getElementById('editEstado').value = btn.dataset.estado;
+                document.getElementById('editId').value = btn.dataset.id;
+                document.getElementById('editNombre').value = btn.dataset.nombre;
+                document.getElementById('editApellido').value = btn.dataset.apellido;
+                document.getElementById('editCorreo').value = btn.dataset.correo;
+                document.getElementById('editTelefono').value = btn.dataset.telefono;
+                document.getElementById('editEstado').value = btn.dataset.estado;
+                document.getElementById('editFechaNac').value = piloto.fecha_nac;
 
-        // Foto previa
-        document.getElementById('editFotoPreview').src = btn.dataset.foto;
-    });
-});
-</script>
+
+                // Foto previa
+                document.getElementById('editFotoPreview').src = btn.dataset.foto;
+            });
+        });
+    </script>
 
 </body>

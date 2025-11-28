@@ -62,7 +62,12 @@
         public function autenticar()
         {
                 return "
-                select idPiloto from GrAlt_Piloto WHERE correo = '".$this->getCorreo()."' and clave = md5('".$this->getClave()."');
+                select 
+                idPiloto 
+                from 
+                GrAlt_Piloto 
+                WHERE 
+                correo = '".$this->getCorreo()."' and clave = md5('".$this->getClave()."');
                 ";
         }
 
@@ -76,7 +81,8 @@
                         p.correo, 
                         p.foto, 
                         e.nombreEstado,
-                        p.telefono
+                        p.telefono,
+                        p.fecha_nac
                         from
                         GrAlt_Piloto p
                         INNER JOIN 
