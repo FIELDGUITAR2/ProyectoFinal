@@ -124,8 +124,9 @@ $error = 0;
                     <div class="col-md-6">
                         <label class="form-label">Estado</label>
                         <select class="form-select" name="idEstadoPersona" id="editEstado">
-                            <option value="1">Activo</option>
-                            <option value="2">Inactivo</option>
+                            <?php
+                                
+                            ?>
                         </select>
                     </div>
 

@@ -107,21 +107,40 @@
 
         public function actualizarPiloto()
         {
-                $conexion = new Conexion();
-                $pilotoDAO = new PilotoDAO(
-                $this->id, 
-                $this->nombre, 
-                $this->apellido, 
-                $this->correo, 
-                "", 
-                "", 
-                $this->fecha_nac, 
-                $this->foto, 
-                $this->idEstadoPersona, 
-                $this->telefono);
-                $conexion->abrir();
-                $conexion->ejecutar($pilotoDAO->actualizarPiloto());                
-                $conexion->cerrar();
+                if($this->foto == ""){
+                        $conexion = new Conexion();
+                        $pilotoDAO = new PilotoDAO(
+                        $this->id, 
+                        $this->nombre, 
+                        $this->apellido, 
+                        $this->correo, 
+                        "", 
+                        "", 
+                        $this->fecha_nac,
+                        $this->idEstadoPersona, 
+                        $this->telefono);
+                        $conexion->abrir();
+                        $conexion->ejecutar($pilotoDAO->actualizarPiloto());                
+                        $conexion->cerrar();
+                }else{
+
+                        $conexion = new Conexion();
+                        $pilotoDAO = new PilotoDAO(
+                        $this->id, 
+                        $this->nombre, 
+                        $this->apellido, 
+                        $this->correo, 
+                        "", 
+                        "", 
+                        $this->fecha_nac, 
+                        $this->foto, 
+                        $this->idEstadoPersona, 
+                        $this->telefono);
+                        $conexion->abrir();
+                        $conexion->ejecutar($pilotoDAO->actualizarPiloto());                
+                        $conexion->cerrar();
+                }
+                
         }
     }
 ?>

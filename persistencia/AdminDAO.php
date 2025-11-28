@@ -17,13 +17,13 @@ class AdminDAO{
 
     public function autenticar(){
         return "select idAdmin
-                from Admin 
+                from GrAlt_Admin 
                 where correo = '" . $this -> correo . "' and clave = '" . md5($this -> clave) . "'";
     }
     
     public function consultar(){
         return "select nombre, correo
-                from Admin
+                from GrAlt_Admin
                 where idAdmin = '" . $this -> id . "'";
     }
 

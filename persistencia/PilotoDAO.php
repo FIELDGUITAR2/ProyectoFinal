@@ -62,7 +62,7 @@
         public function autenticar()
         {
                 return "
-                select idPiloto from Piloto WHERE correo = '".$this->getCorreo()."' and clave = md5('".$this->getClave()."');
+                select idPiloto from GrAlt_Piloto WHERE correo = '".$this->getCorreo()."' and clave = md5('".$this->getClave()."');
                 ";
         }
 
@@ -78,9 +78,9 @@
                         e.nombreEstado,
                         p.telefono
                         from
-                        Piloto p
+                        GrAlt_Piloto p
                         INNER JOIN 
-                        EstadoPersona e on p.idEstadoPersona = e.idEstadoPersona
+                        GrAlt_EstadoPersona e on p.idEstadoPersona = e.idEstadoPersona
                         
                 ";
         }
@@ -101,7 +101,7 @@
                 if($this->getFoto() != ""){
                 return "
                 UPDATE 
-                Piloto SET 
+                GrAlt_Piloto SET 
                 nombres = '".$this->getNombre()."', 
                 apellidos = '".$this->getApellido()."', 
                 correo = '".$this->getCorreo()."', 
@@ -114,7 +114,7 @@
                 }else{
                         return "
                 UPDATE 
-                Piloto SET 
+                GrAlt_Piloto SET 
                 nombres = '".$this->getNombre()."', 
                 apellidos = '".$this->getApellido()."', 
                 correo = '".$this->getCorreo()."',
