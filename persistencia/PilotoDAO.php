@@ -84,5 +84,45 @@
                         
                 ";
         }
+
+        public function actualizarPiloto()
+        {
+                /*
+                return "
+                UPDATE Piloto SET 
+                nombres = '".$this->getNombre()."',
+                apellidos = '".$this->getApellido()."',
+                correo = '".$this->getCorreo()."',
+                telefono = '".$this->getTelefono()."',
+                idEstadoPersona = '".$this->getIdEstadoPersona()."'
+                WHERE idPiloto = '".$this->getId()."';
+                ";
+                */
+                if($this->getFoto() != ""){
+                return "
+                UPDATE 
+                Piloto SET 
+                nombres = '".$this->getNombre()."', 
+                apellidos = '".$this->getApellido()."', 
+                correo = '".$this->getCorreo()."', 
+                foto = '".$this->getFoto()."', 
+                idEstadoPersona = ".$this->getIdEstadoPersona().", 
+                fecha_nac = '".$this->getFecha_nac()."' 
+                WHERE 
+                idPiloto = '".$this->getId()."'; 
+                ";
+                }else{
+                        return "
+                UPDATE 
+                Piloto SET 
+                nombres = '".$this->getNombre()."', 
+                apellidos = '".$this->getApellido()."', 
+                correo = '".$this->getCorreo()."',
+                idEstadoPersona = ".$this->getIdEstadoPersona().", 
+                fecha_nac = '".$this->getFecha_nac()."' 
+                WHERE 
+                idPiloto = '".$this->getId()."';";
+                }
+        }
     }
 ?>

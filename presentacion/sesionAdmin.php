@@ -10,24 +10,21 @@ if ($_SESSION["rol"] != "admin") {
     include("presentacion/menuAdmin.php");
     ?>
 
-    <div
-        class="container">
-        <div
-            class="row justify-content-center align-items-center g-2">
-            <div class="col-9">
-                <h1>
-                    Estadisticas Administrador
-                </h1>
-            </div>
-            <div class="col-3">
-                <img
-                    src="img/admin.png"
-                    alt="Admin Image"
-                    class="img-fluid" />
-            </div>
+    <div class="container my-4">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-md-8">
+            <h1 class="fw-bold mb-0">Estadísticas del Administrador</h1>
+            <p class="text-muted">Panel de control general</p>
         </div>
 
+        <div class="col-md-4 text-end">
+            <img src="img/admin.png" alt="Admin Image" class="img-fluid" style="max-width: 150px;">
+        </div>
     </div>
+
+    <hr>
+</div>
+
 
 
 </body>
