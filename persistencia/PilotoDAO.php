@@ -93,18 +93,7 @@
 
         public function actualizarPiloto()
         {
-                /*
-                return "
-                UPDATE Piloto SET 
-                nombres = '".$this->getNombre()."',
-                apellidos = '".$this->getApellido()."',
-                correo = '".$this->getCorreo()."',
-                telefono = '".$this->getTelefono()."',
-                idEstadoPersona = '".$this->getIdEstadoPersona()."'
-                WHERE idPiloto = '".$this->getId()."';
-                ";
-                */
-                if($this->getFoto() != ""){
+                
                 return "
                 UPDATE 
                 GrAlt_Piloto SET 
@@ -117,18 +106,26 @@
                 WHERE 
                 idPiloto = '".$this->getId()."'; 
                 ";
-                }else{
-                        return "
-                UPDATE 
-                GrAlt_Piloto SET 
-                nombres = '".$this->getNombre()."', 
-                apellidos = '".$this->getApellido()."', 
-                correo = '".$this->getCorreo()."',
-                idEstadoPersona = ".$this->getIdEstadoPersona().", 
-                fecha_nac = '".$this->getFecha_nac()."' 
-                WHERE 
-                idPiloto = '".$this->getId()."';";
-                }
+        }
+
+        public function consultar()
+        {
+                return "
+                        select 
+                        p.nombres, 
+                        p.apellidos, 
+                        p.correo,                        
+                        p.clave, 
+                        p.foto, 
+                        e.nombreEstado,
+                        p.telefono,
+                        p.fecha_nac
+                        from
+                        GrAlt_Piloto p
+                        INNER JOIN 
+                        GrAlt_EstadoPersona e on p.idEstadoPersona = e.idEstadoPersona
+                        where p.idPiloto = ".$this->getId()."
+                ";
         }
     }
 ?>

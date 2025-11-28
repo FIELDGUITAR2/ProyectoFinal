@@ -33,7 +33,6 @@ require_once ('persistencia/EstadoPersonaDAO.php');
             $conexion = new Conexion();
             $estadoPersonaDAO = new EstadoPersonaDAO();
             $conexion -> ejecutar($estadoPersonaDAO -> consultar());
-            $resultado = $conexion -> registro();
             $estadosPersonas = array();
             while(($dato = $conexion -> registro()) != null){
                 $estadoPersona = new EstadoPersona($dato[0], $dato[1]);

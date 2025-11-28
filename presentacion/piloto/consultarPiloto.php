@@ -11,6 +11,18 @@ if (isset($_POST['actualizar'])) {
     $telefono         = $_POST['telefono'];
     $idEstadoPersona  = $_POST['idEstadoPersona'];
     $idPiloto         = $_POST['idPiloto'];
+
+    $piloto = new Piloto(
+        $idPiloto,
+        $nombres,
+        $apellidos,
+        $correo,
+        $telefono,
+        "",
+        "",
+        $idEstadoPersona
+    );
+    $piloto->actualizarPiloto();
 }
 
 ?>
@@ -20,7 +32,6 @@ if (isset($_POST['actualizar'])) {
     include("presentacion/encabezado.php");
     include("presentacion/menuAdmin.php");
     ?>
-
     <div class="container mt-4">
 
         <div class="card shadow-lg border-0">
@@ -58,9 +69,25 @@ if (isset($_POST['actualizar'])) {
                             foreach ($listaPilotos as $p) {
                                 echo "<tr>";
                                 echo "<td>" . $p->getId() . "</td>";
-                                echo "<td><img src='" . $p->getFoto() . "' alt='Foto' 
-                                      class='rounded-circle' 
-                                      style='height:55px; width:55px; object-fit:cover;'></td>";
+                                if ($p->getFoto() == null || $p->getFoto() == "") {
+
+                                    try {
+                                        throw new Exception("Foto no disponible");
+                                    } catch (Exception $e) {
+                                        error_log($e->getMessage());
+                                    }
+
+                                    echo "<td><img src='img/AltairAir.png' alt='Foto' 
+                                    class='rounded-circle' 
+                                    style='height:55px; width:55px; object-fit:cover;'></td>";
+                                } else {
+
+                                    echo "<td><img src='" . $p->getFoto() . "' alt='Foto' 
+                                    class='rounded-circle' 
+                                    style='height:55px; width:55px; object-fit:cover;'></td>";
+                                }
+
+
                                 echo "<td>" . $p->getNombre() . "</td>";
                                 echo "<td>" . $p->getApellido() . "</td>";
                                 echo "<td>" . $p->getCorreo() . "</td>";
@@ -72,19 +99,14 @@ if (isset($_POST['actualizar'])) {
                                 $color = ($estado == 1) ? "success" : "danger";
 
                                 echo "<td><span class='badge bg-$color'>" . $estado . "</span></td>";
-                                echo "<td>
-                                        <button class='btn btn-warning btn-sm editarBtn'
-                                            data-id='" . $p->getId() . "'
-                                            data-nombre='" . $p->getNombre() . "'
-                                            data-apellido='" . $p->getApellido() . "'
-                                            data-correo='" . $p->getCorreo() . "'
-                                            data-telefono='" . $p->getTelefono() . "'
-                                            data-estado='" . $p->getIdEstadoPersona() . "'
-                                            data-foto='" . $p->getFoto() . "'
-                                            data-bs-toggle='modal'
-                                            data-bs-target='#modalEditar'>
-                                            Editar
-                                        </button>
+                                echo "<td>";
+                            ?>
+                                <form method="POST" action="?pid=<?php echo base64_encode('presentacion/piloto/actualizarPiloto.php'); ?>">
+                                    <input type="hidden" name="id" value="<?php echo $p->getId(); ?>">
+                                    <button type="submit" class="btn btn-warning btn-sm">Editar</button>
+                                </form>
+                            <?php
+                                echo "
                                       </td>";
                                 echo "</tr>";
                             }
@@ -97,60 +119,62 @@ if (isset($_POST['actualizar'])) {
         </div>
 
     </div>
+
+
     <!-- Modal Editar Piloto -->
-    <div class="modal fade" id="modalEditar" tabindex="-1">
+
+    <?php /* 
+    <div class="modal fade" id="modalEditar" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
-                <div class="modal-header" style="background:#0b6623; color:white;">
-                    <h5 class="modal-title">Editar Piloto</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <div class="modal-header" style="background:#0b6623;">
+                        <h5 class="modal-title text-white">Editar Piloto</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
 
-                <form action="controlador/piloto/actualizarPiloto.php" method="POST" enctype="multipart/form-data">
                     <div class="modal-body row g-3">
 
                         <input type="hidden" name="idPiloto" id="editId">
 
                         <div class="col-md-6">
-                            <label class="form-label">Nombre</label>
+                            <label>Nombre</label>
                             <input type="text" class="form-control" name="nombres" id="editNombre" required>
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label">Apellido</label>
+                            <label>Apellido</label>
                             <input type="text" class="form-control" name="apellidos" id="editApellido" required>
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label">Correo</label>
+                            <label>Correo</label>
                             <input type="email" class="form-control" name="correo" id="editCorreo" required>
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label">Teléfono</label>
+                            <label>Teléfono</label>
                             <input type="text" class="form-control" name="telefono" id="editTelefono" required>
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label">Estado</label>
-                            <select class="form-select" name="idEstadoPersona" id="editEstado">
-                                <?php
-
-                                ?>
-                            </select>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Fecha de nacimiento</label>
+                            <label>Fecha de Nacimiento</label>
                             <input type="date" class="form-control" name="fecha_nac" id="editFechaNac" required>
                         </div>
 
+                        <div class="col-md-6">
+                            <label>Estado</label>
+                            <select class="form-select" name="idEstadoPersona" id="editEstado" required>
+                                <option value="1">Activo</option>
+                                <option value="2">Inactivo</option>
+                            </select>
+                        </div>
+
                         <div class="col-md-6 text-center">
-                            <label class="form-label">Foto</label>
+                            <label>Foto</label>
                             <input class="form-control" type="file" name="foto">
-                            <img id="editFotoPreview" src=""
-                                class="img-thumbnail mt-2"
+                            <img id="editFotoPreview" src="" class="img-thumbnail mt-2"
                                 style="height:80px; width:80px; object-fit:cover; border-radius:50%;">
                         </div>
 
@@ -167,22 +191,33 @@ if (isset($_POST['actualizar'])) {
         </div>
     </div>
     <script>
-        document.querySelectorAll('.editarBtn').forEach(btn => {
-            btn.addEventListener('click', () => {
+        document.addEventListener("DOMContentLoaded", function() {
 
-                document.getElementById('editId').value = btn.dataset.id;
-                document.getElementById('editNombre').value = btn.dataset.nombre;
-                document.getElementById('editApellido').value = btn.dataset.apellido;
-                document.getElementById('editCorreo').value = btn.dataset.correo;
-                document.getElementById('editTelefono').value = btn.dataset.telefono;
-                document.getElementById('editEstado').value = btn.dataset.estado;
-                document.getElementById('editFechaNac').value = piloto.fecha_nac;
+            let botones = document.querySelectorAll(".editarBtn");
 
+            botones.forEach(boton => {
+                boton.addEventListener("click", function() {
 
-                // Foto previa
-                document.getElementById('editFotoPreview').src = btn.dataset.foto;
+                    document.getElementById("editId").value = this.dataset.id;
+                    document.getElementById("editNombre").value = this.dataset.nombre;
+                    document.getElementById("editApellido").value = this.dataset.apellido;
+                    document.getElementById("editCorreo").value = this.dataset.correo;
+                    document.getElementById("editTelefono").value = this.dataset.telefono;
+                    document.getElementById("editEstado").value = this.dataset.estado;
+
+                    // Fecha
+                    if (this.dataset.fechanac) {
+                        document.getElementById("editFechaNac").value = this.dataset.fechanac;
+                    }
+
+                    // Foto previa
+                    let foto = this.dataset.foto;
+                    document.getElementById("editFotoPreview").src =
+                        (foto && foto !== "") ? foto : "img/AltairAir.png";
+                });
             });
         });
     </script>
+*/ ?>
 
 </body>

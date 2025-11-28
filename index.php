@@ -5,6 +5,7 @@ require_once('logica/Admin.php');
 require_once('logica/Piloto.php');
 require_once('logica/Pasajero.php');
 require_once('logica/Persona.php');
+require_once('logica/EstadoPersona.php');
 /*
 require ("logica/Especialidad.php");
 require ("logica/Medico.php");
@@ -53,6 +54,7 @@ $paginas_con_autenticacion = array(
     "presentacion/sesionPasajero.php",
     "presentacion/piloto/consultarPiloto.php",
     "presentacion/piloto/crearPiloto.php",
+    "presentacion/piloto/actualizarPiloto.php"
     /*"presentacion/sesionMedico.php",
     "presentacion/sesionPaciente.php",
     "presentacion/cita/consultarCita.php",
