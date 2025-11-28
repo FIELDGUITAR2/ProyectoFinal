@@ -4,27 +4,6 @@ if ($_SESSION["rol"] != "admin") {
 }
 $error = 0;
 
-if (isset($_POST['actualizar'])) {
-    $nombres          = $_POST['nombres'];
-    $apellidos        = $_POST['apellidos'];
-    $correo           = $_POST['correo'];
-    $telefono         = $_POST['telefono'];
-    $idEstadoPersona  = $_POST['idEstadoPersona'];
-    $idPiloto         = $_POST['idPiloto'];
-
-    $piloto = new Piloto(
-        $idPiloto,
-        $nombres,
-        $apellidos,
-        $correo,
-        $telefono,
-        "",
-        "",
-        $idEstadoPersona
-    );
-    $piloto->actualizarPiloto();
-}
-
 ?>
 
 <body>
