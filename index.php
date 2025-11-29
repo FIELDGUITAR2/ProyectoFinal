@@ -54,7 +54,8 @@ $paginas_con_autenticacion = array(
     "presentacion/sesionPasajero.php",
     "presentacion/piloto/consultarPiloto.php",
     "presentacion/piloto/crearPiloto.php",
-    "presentacion/piloto/actualizarPiloto.php"
+    "presentacion/piloto/actualizarPiloto.php",
+    "presentacion/vuelo/consultarVuelo.php"
     /*"presentacion/sesionMedico.php",
     "presentacion/sesionPaciente.php",
     "presentacion/cita/consultarCita.php",

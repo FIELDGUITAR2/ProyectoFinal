@@ -4,6 +4,8 @@ if ($_SESSION["rol"] != "admin") {
     header("Location: ?pid=" . base64_encode("presentacion/noAutorizado.php"));
 }
 
+$error = 0;
+
 $mensaje = "";
 
 $idPiloto = isset($_POST['id']) ? $_POST['id'] : "";
