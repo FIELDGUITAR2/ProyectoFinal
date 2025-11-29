@@ -19,6 +19,8 @@ $error = 0;
             <div class="card-header text-white"
                 style="background: linear-gradient(90deg, #0b6623, #c9b200);">
                 <h4 class="mb-0"><i class="fa-solid fa-user-tie"></i> Pilotos</h4>
+                <!-- <input type="text" id="buscar" class="form-control" placeholder="Buscar piloto...">
+                <div id="resultado"></div> -->
             </div>
 
             <div class="card-body">
@@ -98,6 +100,12 @@ $error = 0;
         </div>
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        
+    </script>
+
 
 
     <!-- Modal Editar Piloto -->

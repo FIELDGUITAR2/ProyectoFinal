@@ -146,4 +146,24 @@ class Piloto extends Persona
                         
                 }
         }
+
+        public function agregar()
+        {
+                $conexion = new Conexion();
+                $pilotoDAO = new PilotoDAO(
+                        "",
+                        $this->getNombre(),
+                        $this->getApellido(),
+                        $this->getCorreo(),
+                        $this->getClave(),
+                        "",
+                        $this->getFecha_nac(),
+                        "",
+                        $this->getIdEstadoPersona(),
+                        $this->getTelefono()
+                );
+                $conexion->abrir();
+                $conexion->ejecutar($pilotoDAO->agregar());
+                $conexion->cerrar();
+        }
 }

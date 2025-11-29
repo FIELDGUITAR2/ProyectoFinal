@@ -128,5 +128,14 @@
                         where p.idPiloto = ".$this->getId()."
                 ";
         }
+
+        public function agregar()
+        {
+                return "
+                insert into GrAlt_Piloto(nombres,apellidos,telefono,correo,clave,fecha_nac,idEstadoPersona) 
+                values
+(               '".$this->getNombre()."','".$this->getApellido()."','".$this->getTelefono()."','".$this->getCorreo()."','".$this->getClave()."','".$this->getFecha_nac()."',".$this->getIdEstadoPersona().");
+                ";
+        }
     }
 ?>
