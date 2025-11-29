@@ -10,8 +10,9 @@ $error = 0;
    El formulario envía: name="idPiloto"
    Por lo tanto debe recibirse con el mismo nombre.
 */
-//$idPiloto = isset($_POST['idPiloto']) ? $_POST['idPiloto'] : "";
 
+$idPiloto = isset($_POST['id']) ? $_POST['id'] : "";
+echo $idPiloto;
 
 if (isset($_POST['actualizar'])) {
 
@@ -72,7 +73,7 @@ if (isset($_POST['actualizar'])) {
                         <form action="?pid=<?php echo base64_encode('presentacion/piloto/actualizarPiloto.php'); ?>" method="post">
 
                             <!-- ID oculto -->
-                            <input type="hidden" name="idPiloto" value="<?php echo $piloto->getId(); ?>">
+                            <input type="hidden" name="id" value="<?php echo $piloto->getId(); ?>">
 
                             <label>Nombres</label>
                             <input
@@ -116,8 +117,15 @@ if (isset($_POST['actualizar'])) {
 
                             <label>Estado</label>
                             <select name="idEstadoPersona" class="form-select mb-3" required>
-                                <option value="1" <?php echo ($piloto->getIdEstadoPersona() == 1 ? "selected" : ""); ?>>Activo</option>
-                                <option value="2" <?php echo ($piloto->getIdEstadoPersona() == 2 ? "selected" : ""); ?>>Inactivo</option>
+                                <option value="">Seleccione uno</option>
+                                <?php
+                                    $estado = new EstadoPersona();
+                                    $estados = $estado->consultar();
+                                    foreach($estados as $e)
+                                    {
+                                        echo "<option value='".$e->getIdEstadoPersona()."'>".$e->getNombreEstado()."</option>";
+                                    }
+                                ?>
                             </select>
 
                             <button type="submit" name="actualizar" class="btn btn-success w-100">Guardar Cambios</button>

@@ -102,7 +102,8 @@
                 correo = '".$this->getCorreo()."', 
                 foto = '".$this->getFoto()."', 
                 idEstadoPersona = ".$this->getIdEstadoPersona().", 
-                fecha_nac = '".$this->getFecha_nac()."' 
+                fecha_nac = '".$this->getFecha_nac()."', 
+                telefono = '".$this->getTelefono()."'
                 WHERE 
                 idPiloto = '".$this->getId()."'; 
                 ";
