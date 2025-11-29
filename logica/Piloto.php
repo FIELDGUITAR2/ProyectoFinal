@@ -121,8 +121,9 @@ class Piloto extends Persona
                         $this->telefono
                 );
                 $conexion->abrir();
-                $conexion->ejecutar($pilotoDAO->actualizarPiloto());
+                $resultado = $conexion->ejecutarTF($pilotoDAO->actualizarPiloto());
                 $conexion->cerrar();
+                return $resultado ? true : false;
         }
 
         public function consultar()
@@ -131,10 +132,9 @@ class Piloto extends Persona
                 $conexion->abrir();
                 $pilotoDAO = new PilotoDAO($this->getId());
                 $conexion->ejecutar($pilotoDAO->consultar());
-                while(($dato = $conexion->registro()))
-                {
-                        
-                        $this->nombre =$dato[0];
+                while (($dato = $conexion->registro())) {
+
+                        $this->nombre = $dato[0];
                         $this->apellido = $dato[1];
                         $this->correo = $dato[2];
                         $this->clave = $dato[3];
@@ -143,7 +143,6 @@ class Piloto extends Persona
                         $this->foto = $dato[4];
                         $this->idEstadoPersona = $dato[5];
                         $this->telefono = $dato[6];
-                        
                 }
         }
 
@@ -162,8 +161,13 @@ class Piloto extends Persona
                         $this->getIdEstadoPersona(),
                         $this->getTelefono()
                 );
+
                 $conexion->abrir();
-                $conexion->ejecutar($pilotoDAO->agregar());
+                
+                $resultado = $conexion->ejecutarTF($pilotoDAO->agregar());
+
                 $conexion->cerrar();
+
+                return $resultado ? true : false;
         }
 }

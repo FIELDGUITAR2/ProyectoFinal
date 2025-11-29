@@ -15,6 +15,12 @@ class Conexion{
     public function ejecutar($sentencia){
         $this -> resultado = $this -> conexion -> query($sentencia);
     }
+
+    public function ejecutarTF($sentencia){
+    $this->resultado = $this->conexion->query($sentencia);
+    return $this->resultado; // <-- devolver el resultado de la consulta
+}
+
     
     public function registro(){
         return $this -> resultado -> fetch_row();

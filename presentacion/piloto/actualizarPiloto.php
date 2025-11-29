@@ -4,15 +4,9 @@ if ($_SESSION["rol"] != "admin") {
     header("Location: ?pid=" . base64_encode("presentacion/noAutorizado.php"));
 }
 
-$error = 0;
-
-/* 
-   El formulario envía: name="idPiloto"
-   Por lo tanto debe recibirse con el mismo nombre.
-*/
+$mensaje = "";
 
 $idPiloto = isset($_POST['id']) ? $_POST['id'] : "";
-echo $idPiloto;
 
 if (isset($_POST['actualizar'])) {
 
@@ -23,33 +17,30 @@ if (isset($_POST['actualizar'])) {
     $idEstadoPersona  = $_POST['idEstadoPersona'];
     $fecha_nac        = $_POST['fecha_nac'];
 
-    /*
-     * Constructor Piloto:
-     * (id, nombre, apellido, correo, clave, edad, fecha_nac, foto, idEstadoPersona, telefono)
-     * 
-     * Como no estás modificando la clave, edad ni la foto, se envían como:
-     * clave = ""
-     * edad = ""
-     * foto = ""
-     */
-
     $piloto = new Piloto(
         $idPiloto,
         $nombres,
         $apellidos,
         $correo,
-        "",          // clave
-        "",          // edad
-        $fecha_nac,  // fecha_nac
-        "",          // foto
+        "",
+        "",
+        $fecha_nac,
+        "",
         $idEstadoPersona,
         $telefono
     );
 
-    $piloto->actualizarPiloto();
+    $resultado = $piloto->actualizarPiloto();
+
+    if ($resultado) {
+        $mensaje = "<div class='alert alert-success text-center mt-3'>Piloto actualizado con éxito</div>";
+    } else {
+        $mensaje = "<div class='alert alert-danger text-center mt-3'>Error al actualizar el piloto</div>";
+    }
 }
 
 ?>
+
 
 <body>
     <?php
@@ -69,6 +60,12 @@ if (isset($_POST['actualizar'])) {
                     <div class="card-body">
 
                         <h4 class="card-title mb-3">Editar Piloto</h4>
+
+                        <?php
+                        if (!empty($mensaje)) {
+                            echo $mensaje;
+                        }
+                        ?>
 
                         <form action="?pid=<?php echo base64_encode('presentacion/piloto/actualizarPiloto.php'); ?>" method="post">
 
@@ -119,18 +116,24 @@ if (isset($_POST['actualizar'])) {
                             <select name="idEstadoPersona" class="form-select mb-3" required>
                                 <option value="">Seleccione uno</option>
                                 <?php
-                                    $estado = new EstadoPersona();
-                                    $estados = $estado->consultar();
-                                    foreach($estados as $e)
-                                    {
-                                        echo "<option value='".$e->getIdEstadoPersona()."'>".$e->getNombreEstado()."</option>";
-                                    }
+                                $estado = new EstadoPersona();
+                                $estados = $estado->consultar();
+                                foreach ($estados as $e) {
+                                    echo "<option value='" . $e->getIdEstadoPersona() . "'>" . $e->getNombreEstado() . "</option>";
+                                }
                                 ?>
                             </select>
 
                             <button type="submit" name="actualizar" class="btn btn-success w-100">Guardar Cambios</button>
 
                         </form>
+                        <?php
+                        if ($resultado) {
+                            $mensaje = "<div class='alert alert-success text-center mt-3'>Piloto actualizado con exito</div>";
+                        } else {
+                            $mensaje = "<div class='alert alert-danger text-center mt-3'>Error al actualizar el piloto</div>";
+                        }
+                        ?>
 
                     </div>
                 </div>

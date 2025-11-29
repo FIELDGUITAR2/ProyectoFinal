@@ -87,6 +87,7 @@
                         GrAlt_Piloto p
                         INNER JOIN 
                         GrAlt_EstadoPersona e on p.idEstadoPersona = e.idEstadoPersona
+                        order by p.idPiloto
                         
                 ";
         }
@@ -134,7 +135,7 @@
                 return "
                 insert into GrAlt_Piloto(nombres,apellidos,telefono,correo,clave,fecha_nac,idEstadoPersona) 
                 values
-(               '".$this->getNombre()."','".$this->getApellido()."','".$this->getTelefono()."','".$this->getCorreo()."','".$this->getClave()."','".$this->getFecha_nac()."',".$this->getIdEstadoPersona().");
+(               '".$this->getNombre()."','".$this->getApellido()."','".$this->getTelefono()."','".$this->getCorreo()."',md5('".$this->getClave()."'),'".$this->getFecha_nac()."',".$this->getIdEstadoPersona().");
                 ";
         }
     }
