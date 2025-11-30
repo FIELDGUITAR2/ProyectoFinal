@@ -331,3 +331,13 @@ ALTER TABLE `GrAlt_Boleto`
     FOREIGN KEY (`idClase`) REFERENCES `GrAlt_ClaseBoleto` (`idClase`) ON DELETE CASCADE;
 
 COMMIT;
+
+ALTER TABLE GrAlt_Admin
+ADD UNIQUE (correo);
+
+ALTER TABLE GrAlt_Pasajero
+ADD UNIQUE (correo);
+
+ALTER TABLE GrAlt_Piloto
+ADD UNIQUE (correo);
+

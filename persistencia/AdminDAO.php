@@ -22,9 +22,11 @@ class AdminDAO{
     }
     
     public function consultar(){
-        return "select nombre, correo
-                from GrAlt_Admin
-                where idAdmin = '" . $this -> id . "'";
+        return "select 
+        nombre,
+        correo
+        from GrAlt_Admin
+        where idAdmin = '" . $this -> id . "'";
     }
 
     /**

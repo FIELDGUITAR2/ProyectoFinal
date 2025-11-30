@@ -1,6 +1,6 @@
 <?php
 require_once('logica/Persona.php');
-require_once('persistencia/PilotoDAO.php');
+require_once('persistencia/PasajeroDAO.php');
 require_once('persistencia/Conexion.php');
 
 class Pasajero extends Persona
@@ -43,6 +43,22 @@ class Pasajero extends Persona
 
     public function autenticar()
     {
-        return false;
+        $conexion = new Conexion();
+        $pasajeroDAO = new PasajeroDAO(
+            "",
+            "",
+            "", 
+            $this -> correo, 
+            $this -> clave);
+        $conexion -> abrir();
+        $conexion -> ejecutar($pasajeroDAO -> autenticar());
+        if($conexion -> filas() == 1){            
+            $this -> id = $conexion -> registro()[0];
+            $conexion->cerrar();
+            return true;
+        }else{
+            $conexion->cerrar();
+            return false;
+        }
     }
 }

@@ -4,44 +4,49 @@ if (isset($_GET["sesion"])) {
 		session_destroy();
 	}
 }
+
 $error = false;
+
 if (isset($_POST["autenticar"])) {
+
 	$correo = $_POST["correo"];
 	$clave = $_POST["clave"];
 
+	// --- Intento de autenticación: ADMIN ---
 	$admin = new Admin("", "", "", $correo, $clave);
+
 	if ($admin->autenticar()) {
 		$_SESSION["id"] = $admin->getId();
 		$_SESSION["rol"] = "admin";
 		header("Location: ?pid=" . base64_encode("presentacion/sesionAdmin.php"));
-		//header("Location: ?pid=" . base64_encode("presentacion/sesionAdmin.php"));
+		exit();
 	}
 
-	$admin = new Admin("", "", "", $correo, $clave);
-	if ($admin->autenticar()) {
-		$_SESSION["id"] = $admin->getId();
-		$_SESSION["rol"] = "admin";
-		header("Location: ?pid=" . base64_encode("presentacion/sesionAdmin.php"));
-	} else {
-		$piloto = new Piloto("", "", "", $correo, $clave);
-		if ($piloto->autenticar()) {
-			$_SESSION["id"] = $medico->getId();
-			$_SESSION["rol"] = "piloto";
-			header("Location: ?pid=" . base64_encode("presentacion/sesionPiloto.php"));
-		} else {
-			$pasajero = new Pasajero("", "", "", $correo, $clave);
-			if ($pasajero->autenticar()) {
-				$_SESSION["id"] = $paciente->getId();
-				$_SESSION["rol"] = "pasajero";
-				header("Location: ?pid=" . base64_encode("presentacion/sesionPasajero.php"));
-			} else {
-				$error = true;
-			}
-		}
+	// --- Intento de autenticación: PILOTO ---
+	$piloto = new Piloto("", "", "", $correo, $clave);
+
+	if ($piloto->autenticar()) {
+		$_SESSION["id"] = $piloto->getId();
+		$_SESSION["rol"] = "piloto";
+		header("Location: ?pid=" . base64_encode("presentacion/sesionPiloto.php"));
+		exit();
 	}
 
+	// --- Intento de autenticación: PASAJERO ---
+	$pasajero = new Pasajero("", "", "", $correo, $clave);
+
+	if ($pasajero->autenticar()) {
+		$_SESSION["id"] = $pasajero->getId();
+		$_SESSION["rol"] = "pasajero";
+		header("Location: ?pid=" . base64_encode("presentacion/sesionPasajero.php"));
+		exit();
+	}
+
+	// Si nadie autenticó
+	$error = true;
 }
 ?>
+
 
 <!--
 

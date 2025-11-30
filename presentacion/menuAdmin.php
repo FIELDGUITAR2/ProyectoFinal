@@ -82,7 +82,7 @@ $admin -> consultar();
                         <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">
                             <i class="fa-solid fa-user-shield"></i>
                             Administrador: 
-                            <?php echo $admin->getNombre() . " " . $admin->getApellido(); ?>
+                            <?php echo $admin->getNombre() . " " . $admin->getCorreo(); ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#">Editar Perfil</a></li>

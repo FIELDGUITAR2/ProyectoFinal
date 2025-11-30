@@ -31,8 +31,7 @@ class Admin extends Persona {
         $conexion -> ejecutar($adminDAO -> consultar());
         $datos = $conexion -> registro();
         $this -> nombre = $datos[0];
-        $this -> apellido = $datos[1];
-        $this -> correo = $datos[2];
+        $this -> correo = $datos[1];
         $conexion->cerrar();
     }
 }
