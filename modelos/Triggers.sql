@@ -1,129 +1,129 @@
-DELIMITER $$
-
-CREATE TRIGGER trg_calcular_edad_piloto_before_insert
-BEFORE INSERT ON Piloto
-FOR EACH ROW
-BEGIN
-    SET NEW.edad = TIMESTAMPDIFF(YEAR, NEW.fecha_nac, CURDATE());
-END $$
-
-CREATE TRIGGER trg_calcular_edad_piloto_before_update
-BEFORE UPDATE ON Piloto
-FOR EACH ROW
-BEGIN
-    SET NEW.edad = TIMESTAMPDIFF(YEAR, NEW.fecha_nac, CURDATE());
-END $$
-
-DELIMITER ;
+USE AltairAir;
 
 DELIMITER $$
 
-CREATE TRIGGER trg_validar_pilotos_before_insert
-BEFORE INSERT ON Vuelo
+/* ============================================================
+   1. IMPEDIR QUE UN VUELO TENGA PILOTO = COPILOTO
+   ============================================================ */
+DROP TRIGGER IF EXISTS trg_validar_pilotos $$
+CREATE TRIGGER trg_validar_pilotos
+BEFORE INSERT ON GrAlt_Vuelo
 FOR EACH ROW
 BEGIN
     IF NEW.idPiloto = NEW.idCopiloto THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'El piloto y el copiloto no pueden ser la misma persona';
+            SET MESSAGE_TEXT = 'El piloto y copiloto no pueden ser la misma persona.';
     END IF;
 END $$
 
-CREATE TRIGGER trg_validar_pilotos_before_update
-BEFORE UPDATE ON Vuelo
+DROP TRIGGER IF EXISTS trg_validar_pilotos_upd $$
+CREATE TRIGGER trg_validar_pilotos_upd
+BEFORE UPDATE ON GrAlt_Vuelo
 FOR EACH ROW
 BEGIN
     IF NEW.idPiloto = NEW.idCopiloto THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'El piloto y el copiloto no pueden ser la misma persona';
+            SET MESSAGE_TEXT = 'El piloto y copiloto no pueden ser la misma persona.';
     END IF;
 END $$
 
-DELIMITER ;
 
-DELIMITER $$
+/* ============================================================
+   2. IMPEDIR QUE ORIGEN = DESTINO
+   ============================================================ */
+DROP TRIGGER IF EXISTS trg_validar_origen_destino $$
+CREATE TRIGGER trg_validar_origen_destino
+BEFORE INSERT ON GrAlt_Vuelo
+FOR EACH ROW
+BEGIN
+    IF NEW.idOrigen = NEW.idDestino THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'El origen y destino del vuelo no pueden ser iguales.';
+    END IF;
+END $$
 
-CREATE TRIGGER trg_evitar_sobreventa_before_insert
-BEFORE INSERT ON Boleto
+DROP TRIGGER IF EXISTS trg_validar_origen_destino_upd $$
+CREATE TRIGGER trg_validar_origen_destino_upd
+BEFORE UPDATE ON GrAlt_Vuelo
+FOR EACH ROW
+BEGIN
+    IF NEW.idOrigen = NEW.idDestino THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'El origen y destino del vuelo no pueden ser iguales.';
+    END IF;
+END $$
+
+
+/* ============================================================
+   3. VALIDACIÓN: NO PERMITIR ASIENTOS DUPLICADOS EN UN MISMO VUELO
+   ============================================================ */
+DROP TRIGGER IF EXISTS trg_validar_asiento $$
+CREATE TRIGGER trg_validar_asiento
+BEFORE INSERT ON GrAlt_Boleto
+FOR EACH ROW
+BEGIN
+    IF EXISTS(
+        SELECT 1 FROM GrAlt_Boleto 
+        WHERE idVuelo = NEW.idVuelo AND asiento = NEW.asiento
+    ) THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Ese asiento ya está ocupado en este vuelo.';
+    END IF;
+END $$
+
+
+/* ============================================================
+   4. VALIDACIÓN: NO SOBREPASAR CAPACIDAD DEL AVIÓN
+   ============================================================ */
+DROP TRIGGER IF EXISTS trg_validar_capacidad $$
+CREATE TRIGGER trg_validar_capacidad
+BEFORE INSERT ON GrAlt_Boleto
 FOR EACH ROW
 BEGIN
     DECLARE capacidad INT;
-    DECLARE vendidos INT;
+    DECLARE ocupados INT;
 
-    SELECT A.capacidadPasajeros INTO capacidad
-    FROM Vuelo V INNER JOIN Avion A ON V.idAvion = A.idAvion
-    WHERE V.idVuelo = NEW.idVuelo;
+    SELECT capacidadPasajeros INTO capacidad
+    FROM GrAlt_Avion a
+    JOIN GrAlt_Vuelo v ON v.idAvion = a.idAvion
+    WHERE v.idVuelo = NEW.idVuelo;
 
-    SELECT COUNT(*) INTO vendidos
-    FROM Boleto
+    SELECT COUNT(*) INTO ocupados 
+    FROM GrAlt_Boleto 
     WHERE idVuelo = NEW.idVuelo;
 
-    IF vendidos >= capacidad THEN
+    IF ocupados >= capacidad THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'No se pueden vender más boletos: capacidad del avión alcanzada';
+            SET MESSAGE_TEXT = 'La capacidad máxima del avión ya fue alcanzada.';
     END IF;
 END $$
 
-DELIMITER ;
 
-DELIMITER $$
-
-CREATE TRIGGER trg_actualizar_pasajeros_after_insert
-AFTER INSERT ON Boleto
+/* ============================================================
+   5. ACTUALIZAR CANTIDAD DE PASAJEROS CUANDO SE INSERTA BOLETO
+   ============================================================ */
+DROP TRIGGER IF EXISTS trg_sumar_pasajero $$
+CREATE TRIGGER trg_sumar_pasajero
+AFTER INSERT ON GrAlt_Boleto
 FOR EACH ROW
 BEGIN
-    UPDATE Vuelo
+    UPDATE GrAlt_Vuelo
     SET cantidadPasajeros = cantidadPasajeros + 1
     WHERE idVuelo = NEW.idVuelo;
 END $$
 
-DELIMITER ;
 
-DELIMITER $$
-
-CREATE TRIGGER trg_actualizar_pasajeros_after_delete
-AFTER DELETE ON Boleto
+/* ============================================================
+   6. ACTUALIZAR CANTIDAD DE PASAJEROS CUANDO SE ELIMINA BOLETO
+   ============================================================ */
+DROP TRIGGER IF EXISTS trg_restar_pasajero $$
+CREATE TRIGGER trg_restar_pasajero
+AFTER DELETE ON GrAlt_Boleto
 FOR EACH ROW
 BEGIN
-    UPDATE Vuelo
+    UPDATE GrAlt_Vuelo
     SET cantidadPasajeros = cantidadPasajeros - 1
     WHERE idVuelo = OLD.idVuelo;
 END $$
 
 DELIMITER ;
-
-DELIMITER $$
-
-CREATE TRIGGER trg_prevenir_asiento_duplicado_before_insert
-BEFORE INSERT ON Boleto
-FOR EACH ROW
-BEGIN
-    IF EXISTS(
-        SELECT 1 FROM Boleto 
-        WHERE idVuelo = NEW.idVuelo AND asiento = NEW.asiento
-    ) THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'El asiento ya está ocupado en este vuelo';
-    END IF;
-END $$
-
-DELIMITER ;
-
-CREATE TABLE AuditoriaVuelos(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    idVuelo INT,
-    accion VARCHAR(20),
-    fecha DATETIME
-);
-
-DELIMITER $$
-
-CREATE TRIGGER trg_auditar_vuelos_after_insert
-AFTER INSERT ON Vuelo
-FOR EACH ROW
-BEGIN
-    INSERT INTO AuditoriaVuelos(idVuelo, accion, fecha)
-    VALUES (NEW.idVuelo, 'CREADO', NOW());
-END $$
-
-DELIMITER ;
-

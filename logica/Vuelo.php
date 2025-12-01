@@ -126,7 +126,7 @@ class Vuelo {
         $conexion = new Conexion();
         $vueloDAO = new VueloDAO();
         $conexion->abrir();
-        //$conexion->ejecutar($vueloDAO->consultarVuelos());
+        $conexion->ejecutar($vueloDAO->consultarVuelos());
         $listaVuelos = array();
         while(($dato = $conexion->registro())!=null)
         {
@@ -171,6 +171,27 @@ class Vuelo {
         }
         $conexion->cerrar();
         return $listaVuelos;
+    }
+
+    public function insertarVuelo()
+    {
+        $conexion = new Conexion();
+        $conexion->abrir();
+        $vueloDAO = new VueloDAO(
+            $this->idVuelo,
+            $this->avion,
+            $this->piloto,
+            $this->copiloto,
+            $this->origen,
+            $this->destino,
+            $this->estado,
+            $this->hora,
+            $this->fecha,
+            $this->cantidad_Pas
+        );
+        $res = $conexion->ejecutarTF($vueloDAO);
+        $conexion->cerrar();
+        return $res;
     }
 
 }

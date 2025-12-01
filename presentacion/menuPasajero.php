@@ -44,7 +44,7 @@ $p = $pasajero->consultar();
                     <!-- Vuelos Disponibles -->
                     <li class="nav-item">
                         <a class="nav-link" 
-                           href="?pid=<?php echo base64_encode('presentacion/vuelo/vuelosDisponibles.php')?>">
+                           href="?pid=<?php echo base64_encode('presentacion/sesionPasajero.php')?>">
 
                             <i class="fa-solid fa-plane-departure"></i> Vuelos Disponibles
                         </a>
@@ -53,7 +53,7 @@ $p = $pasajero->consultar();
                     <!-- Mis Boletos -->
                     <li class="nav-item">
                         <a class="nav-link" 
-                           href="?pid=<?php echo base64_encode('presentacion/boleto/misBoletos.php')?>">
+                           href="?pid=<?php echo base64_encode('presentacion/boletos/misBoletos.php')?>">
 
                             <i class="fa-solid fa-ticket"></i> Mis Boletos
                         </a>
