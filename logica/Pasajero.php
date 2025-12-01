@@ -61,4 +61,28 @@ class Pasajero extends Persona
             return false;
         }
     }
+
+    public function consultar()
+    {
+        $conexion = new Conexion();
+        $pasajeroDAO = new PasajeroDAO($this->getId());
+        $conexion->abrir();
+        $conexion->ejecutar($pasajeroDAO->consultar());
+        $dPas = array();
+        while(($dato = $conexion->registro())!=null)
+        {
+            $pasajero = new Pasajero(
+                $this->getId(),
+                $dato[0],
+                $dato[1],
+                $dato[2],
+                "",
+                $dato[3],
+                "",
+                $dato[4]
+            );
+            array_push($dPas,$pasajero);
+        }
+        return $dPas;
+    }
 }

@@ -42,10 +42,27 @@ class PasajeroDAO extends PersonaDAO
     public function autenticar()
     {
         return "
-        select idPasajero
+        select 
+        idPasajero
         FROM
         GrAlt_Pasajero
         where
         correo = '".$this->getCorreo()."' and clave = md5('".$this->getClave()."');";
+    }
+
+    public function consultar()
+    {
+        return "
+        select
+        nombres,
+        apellidos,
+        correo,
+        foto,
+        telefono
+        From
+        GrAlt_Pasajero
+        where
+        idPasajero = ".$this->getId().";
+        ";
     }
 }

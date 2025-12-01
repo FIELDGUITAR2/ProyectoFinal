@@ -2,6 +2,7 @@
 $id = $_SESSION["id"];
 $pasajero = new Pasajero($id);
 $pasajero->autenticar();
+$p = $pasajero->consultar();
 ?>
 
 <div class="container-fluid px-0">
@@ -76,7 +77,12 @@ $pasajero->autenticar();
                            data-bs-toggle="dropdown">
 
                             <i class="fa-solid fa-user"></i>
-                            <?php echo $pasajero->getNombre() . " (" . $pasajero->getCorreo() . ")"; ?>
+                            <?php 
+                            foreach($p as $perfil)
+                            {
+                                echo $perfil->getNombre() . " (" . $perfil->getCorreo() . ")";
+                            }
+                            ?>
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end">
