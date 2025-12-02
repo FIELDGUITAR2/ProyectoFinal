@@ -3,14 +3,14 @@ name: Deploy
 on:
   push:
     branches:
-      - main
+      - main   # Se ejecuta cuando subes cambios a la rama main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Descargar código
+      - name: Checkout del código
         uses: actions/checkout@v3
 
       - name: Deploy al servidor FTP
@@ -20,14 +20,5 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
-          port: 21
-          # Directorio correcto del hosting ITIU
-          server-dir: /public_html/
-          # Tu código local
+          server-dir: /
           local-dir: ./
-          exclude: |
-            **/.git*
-            **/.github*
-            README.md
-            **/vendor
-            **/node_modules
