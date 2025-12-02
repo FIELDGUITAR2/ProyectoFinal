@@ -1,5 +1,4 @@
 <?php
-
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
@@ -8,119 +7,159 @@ if ($_SESSION["rol"] != "admin") {
 }
 
 $error = 0;
-
 ?>
 
 <body>
-    <?php
-    include('presentacion/encabezado.php');
-    include('presentacion/menuAdmin.php');
-    ?>
-    <div class="container-fluid mt-4">
+<?php
+include('presentacion/encabezado.php');
+include('presentacion/menuAdmin.php');
+?>
 
-        <div class="row justify-content-center g-4">
+<div class="container-fluid mt-4">
 
-            <!-- SECCIÓN DE VUELOS -->
-            <div class="col-lg-11 col-md-12">
-                <div class="card shadow">
+    <div class="row justify-content-center g-4">
 
-                    <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0">Vuelos</h4>
-                    </div>
-
-                    <div class="card-body">
-                        <p class="text-muted">Próximos vuelos programados:</p>
-
-                        <div class="table-responsive">
-                            <table class="table table-bordered align-middle">
-                                <thead class="table-dark text-center">
-                                    <tr>
-                                        <th scope="col">Id vuelo</th>
-                                        <th scope="col">Avion</th>
-                                        <th scope="col">Piloto</th>
-                                        <th scope="col">Copiloto</th>
-                                        <th scope="col">Origen</th>
-                                        <th scope="col">Destino</th>
-                                        <th scope="col">Estado</th>
-                                        <th scope="col">Hora</th>
-                                        <th scope="col">Fecha</th>
-                                        <th scope="col">Cantidad de pasajeros</th>
-                                        <th scope="col">Acciones</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $vuelo = new Vuelo();
-                                    $vuelos = $vuelo->consultarVuelos();
-                                    foreach ($vuelos as $v) {
-                                        echo "<tr>";
-                                        echo "<td>" . $v->getIdVuelo() . "</td>";
-                                        echo "<td>" . $v->getAvion() . "</td>";
-                                        echo "<td>" . $v->getPiloto() . "</td>";
-                                        echo "<td>" . $v->getCopiloto() . "</td>";
-                                        echo "<td>" . $v->getOrigen() . "</td>";
-                                        echo "<td>" . $v->getDestino() . "</td>";
-                                        echo "<td>" . $v->getEstado() . "</td>";
-                                        echo "<td>" . $v->getHora() . "</td>";
-                                        echo "<td>" . $v->getFecha() . "</td>";
-                                        echo "<td>" . $v->getCantidadPasajeros() . "</td>";
-                                        echo "<td class='text-center'>
-                                                <button class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#modalEditar" . $v->getIdVuelo() . "'>
-                                                    Editar
-                                                </button>
-                                              </td>";
-                                        echo "</tr>";
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <?php /*
-        <!-- SECCIÓN EDITAR -->
-        <div class="col-lg-3 col-md-12">
+        <!-- SECCIÓN DE VUELOS -->
+        <div class="col-lg-11 col-md-12">
             <div class="card shadow">
 
-                <div class="card-header bg-success text-white">
-                    <h4 class="mb-0">Editar</h4>
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Vuelos</h4>
                 </div>
 
                 <div class="card-body">
-                    <p class="text-muted">Aquí podrás editar la información de los vuelos seleccionados.</p>
+                    <p class="text-muted">Próximos vuelos programados:</p>
 
-                    <!-- Aquí puedes colocar el formulario de edición -->
-                    <button class="btn btn-success w-100">Editar vuelo</button>
-                </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle">
+                            <thead class="table-dark text-center">
+                                <tr>
+                                    <th>Id vuelo</th>
+                                    <th>Avion</th>
+                                    <th>Piloto</th>
+                                    <th>Copiloto</th>
+                                    <th>Origen</th>
+                                    <th>Destino</th>
+                                    <th>Estado</th>
+                                    <th>Hora</th>
+                                    <th>Fecha</th>
+                                    <th>Pasajeros</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
 
-            </div>
-        </div>
-        */ ?>
+                            <tbody>
+                                <?php
+                                $vuelo = new Vuelo();
+                                $vuelos = $vuelo->consultarVuelos();
 
-        </div>
-        <div class="modal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                foreach ($vuelos as $v) {
+
+                                    // FILA DE LA TABLA
+                                    echo "<tr>";
+                                    echo "<td>{$v->getIdVuelo()}</td>";
+                                    echo "<td>{$v->getAvion()}</td>";
+                                    echo "<td>{$v->getPiloto()}</td>";
+                                    echo "<td>{$v->getCopiloto()}</td>";
+                                    echo "<td>{$v->getOrigen()}</td>";
+                                    echo "<td>{$v->getDestino()}</td>";
+                                    echo "<td>{$v->getEstado()}</td>";
+                                    echo "<td>{$v->getHora()}</td>";
+                                    echo "<td>{$v->getFecha()}</td>";
+                                    echo "<td>{$v->getCantidadPasajeros()}</td>";
+
+                                    // BOTÓN EDITAR
+                                    echo "
+                                        <td class='text-center'>
+                                            <button 
+                                                class='btn btn-warning btn-sm' 
+                                                data-bs-toggle='modal' 
+                                                data-bs-target='#modalEditar{$v->getIdVuelo()}'>
+                                                Editar
+                                            </button>
+                                        </td>
+                                    ";
+
+                                    echo "</tr>";
+
+                                    // MODAL PARA ESTE VUELO
+                                    echo "
+                                    <div class='modal fade' id='modalEditar{$v->getIdVuelo()}' tabindex='-1'>
+                                      <div class='modal-dialog modal-lg'>
+                                        <div class='modal-content'>
+
+                                          <div class='modal-header bg-warning'>
+                                            <h5 class='modal-title'>Editar vuelo #{$v->getIdVuelo()}</h5>
+                                            <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
+                                          </div>
+
+                                          <form method='POST' action='modificarVuelo.php'>
+                                            <div class='modal-body'>
+
+                                              <input type='hidden' name='idVuelo' value='{$v->getIdVuelo()}'>
+
+                                              <div class='row g-3'>
+
+                                                <div class='col-md-6'>
+                                                  <label>Avión</label>
+                                                  <input class='form-control' name='avion' value='{$v->getAvion()}'>
+                                                </div>
+
+                                                <div class='col-md-6'>
+                                                  <label>Piloto</label>
+                                                  <input class='form-control' name='piloto' value='{$v->getPiloto()}'>
+                                                </div>
+
+                                                <div class='col-md-6'>
+                                                  <label>Copiloto</label>
+                                                  <input class='form-control' name='copiloto' value='{$v->getCopiloto()}'>
+                                                </div>
+
+                                                <div class='col-md-6'>
+                                                  <label>Estado</label>
+                                                  <select class='form-control' name='estado'>
+                                                    <option ".($v->getEstado()=="Programado"?"selected":"").">Programado</option>
+                                                    <option ".($v->getEstado()=="En curso"?"selected":"").">En curso</option>
+                                                    <option ".($v->getEstado()=="Finalizado"?"selected":"").">Finalizado</option>
+                                                  </select>
+                                                </div>
+
+                                                <div class='col-md-6'>
+                                                  <label>Hora</label>
+                                                  <input type='time' class='form-control' name='hora' value='{$v->getHora()}'>
+                                                </div>
+
+                                                <div class='col-md-6'>
+                                                  <label>Fecha</label>
+                                                  <input type='date' class='form-control' name='fecha' value='{$v->getFecha()}'>
+                                                </div>
+
+                                              </div>
+                                            </div>
+
+                                            <div class='modal-footer'>
+                                              <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cerrar</button>
+                                              <button type='submit' class='btn btn-success'>Guardar cambios</button>
+                                            </div>
+
+                                          </form>
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                    ";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="modal-body">
-                        <p>Modal body text goes here.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+
                 </div>
             </div>
         </div>
 
     </div>
 
-
+</div>
 
 </body>
