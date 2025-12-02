@@ -54,7 +54,7 @@ include('presentacion/menuAdmin.php');
                                     $aeropuertos = $aeropuerto->consultarListaAeropuertos();
                                     foreach($aeropuertos as $a)
                                     {
-                                        echo "<option value='".$a->getId()."'>".$a->getNombre()."</option>";
+                                        echo "<option value='".$a->getId()."'>".$a->getNombre()." Ciudad: ".$a->getCiudad()->getNombre()." Pais: ".$a->getCiudad()->getPais()."</option>";
                                     }
                                 ?>
                             </select>
