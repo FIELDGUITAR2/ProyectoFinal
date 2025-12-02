@@ -66,13 +66,14 @@ $error = 0;
                                         echo "<td>".$v->getHora()."</td>";
                                         echo "<td>".$v->getFecha()."</td>";
                                         echo "<td>".$v->getCantidadPasajeros()."</td>";
-                                        echo "</tr>";
-                                        
                                         echo "<td class='text-center'>
                                                 <button class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#modalEditar".$v->getIdVuelo()."'>
                                                     Editar
                                                 </button>
                                               </td>";
+                                        echo "</tr>";
+                                        
+                                        
                                     }
                                 ?>
                             </tbody>
