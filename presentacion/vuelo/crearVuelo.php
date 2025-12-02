@@ -34,7 +34,12 @@ include('presentacion/menuAdmin.php');
                             <select class="form-select" name="avion" id="avion" required>
                                 <option value="">Seleccione un avión</option>
                                 <?php
-                                    
+                                    $avion = new Avion();
+                                    $aviones = $avion->consultarAviones();
+                                    foreach($aviones as $a)
+                                    {
+                                        echo "<option value = '".$a->getId()."'>".$a->getNombreAvion()."</option>";
+                                    }
                                 ?>
                             </select>
                         </div>
