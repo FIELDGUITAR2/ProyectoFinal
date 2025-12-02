@@ -205,8 +205,7 @@ class VueloDAO
         return "update 
                 GrAlt_Vuelo 
                 set
-                idOrigen = ".$this->origen.",
-                idDestino = ".$this->destino.",
+                idPiloto = ".$this->piloto.",
                 idCopiloto = ".$this->copiloto.",
                 idEstado = ".$this->estado.",
                 idAvion = ".$this->avion.",

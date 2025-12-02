@@ -7,28 +7,25 @@ if ($_SESSION["rol"] != "admin") {
 }
 
 if (isset($_POST["actualizarVuelo"])) {
-    $idVuelo        =   $_POST["idVuelo"];
-    $avion          =   $_POST["avion"];
-    $piloto         =   $_POST["piloto"];
-    $copiloto       =   $_POST["copiloto"];
-    $estado         =   $_POST["estado"];
-    $hora           =   $_POST["hora"];
-    $fecha          =   $_POST["fecha"];
 
     $vuelo = new Vuelo(
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
+        $_POST["idVuelo"],
+        $_POST["avion"],
+        $_POST["piloto"],
+        $_POST["copiloto"],
+        "",   // origen (si no lo actualizas, pon "")
+        "",   // destino
+        $_POST["estado"],
+        $_POST["hora"],
+        $_POST["fecha"],
+        ""    // pasajeros
     );
-    $vuelo->actualizarVuelo();
+
+    $res = $vuelo->actualizarVuelo();
+
+    echo $res ? "Vuelo actualizado correctamente" : "Error al actualizar";
 }
+
 ?>
 
 <body>
@@ -152,9 +149,9 @@ if (isset($_POST["actualizarVuelo"])) {
                                                                     <select class="form-control" name="copiloto" id="copiloto">
                                                                         <option value="">Seleccione una opcion</option>
                                                                         <?php
-                                                                            foreach($pilotosS as $p)
+                                                                            foreach($pilotosS as $cp)
                                                                             {
-                                                                                echo "<option value='".$p->getId()."'>".$p->getNombre()."</option>";
+                                                                                echo "<option value='".$cp->getId()."'>".$cp->getNombre()."</option>";
                                                                             }
                                                                         ?>
                                                                     </select>

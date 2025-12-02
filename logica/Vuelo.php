@@ -210,7 +210,7 @@ class Vuelo {
             $this->fecha,
             $this->cantidad_Pas
         );
-        $res = $conexion->ejecutarTF($vueloDAO->insertarVuelo());
+        $res = $conexion->ejecutarTF($vueloDAO->actualizarVuelo());
         $conexion->cerrar();
         return $res;
     }
