@@ -65,6 +65,14 @@ include('presentacion/menuAdmin.php');
                             <label class="form-label">Destino</label>
                             <select class="form-select" name="destino" id="destino" required>
                                 <option value="">Seleccione un destino</option>
+                                <?php
+                                    $aeropuerto = new Aeropuerto();
+                                    $aeropuertos = $aeropuerto->consultarListaAeropuertos();
+                                    foreach($aeropuertos as $a)
+                                    {
+                                        echo "<option value='".$a->getId()."'>".$a->getNombre()." Ciudad: ".$a->getCiudad()->getNombre()." Pais: ".$a->getCiudad()->getPais()."</option>";
+                                    }
+                                ?>
                             </select>
                         </div>
 
@@ -73,6 +81,7 @@ include('presentacion/menuAdmin.php');
                             <label class="form-label">Piloto</label>
                             <select class="form-select" name="piloto" id="piloto" required>
                                 <option value="">Seleccione un piloto</option>
+                                
                             </select>
                         </div>
 
