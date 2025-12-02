@@ -100,7 +100,7 @@ $error = 0;
 
                                                                 <div class='col-md-6'>
                                                                     <label>Avión</label>
-                                                                    <input class='form-control' name='avion' value='{$v->getAvion()}'>
+                                                                    <?php echo"<input class='form-control' name='avion' value='{$v->getAvion()}'>"?>
                                                                 </div>
 
                                                                 <div class='col-md-6'>
