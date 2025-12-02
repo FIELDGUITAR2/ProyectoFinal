@@ -91,7 +91,7 @@ $error = 0;
                                                         <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
                                                     </div>
 
-                                                    <form method='POST' action='modificarVuelo.php'>
+                                                    <form method='POST' action='?pid=<?php echo base64_encode('presentacion/vuelo/consultarVuelo.php') ?>'>
                                                         <div class='modal-body'>
 
                                                             <?php echo "<input type='hidden' name='idVuelo' value='{$v->getIdVuelo()}'>" ?>
