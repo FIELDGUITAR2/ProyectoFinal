@@ -86,7 +86,7 @@ include('presentacion/menuAdmin.php');
                                     $pilotos = $piloto->consultarPilotos();
                                     foreach($pilotos as $p)
                                     {
-                                        echo "<option value='".$p->getId()."'>".$p->getNombre."</option>";
+                                        echo "<option value='".$p->getId()."'>".$p->getNombre()."</option>";
                                     }
                                 ?>
                             </select>
@@ -97,6 +97,14 @@ include('presentacion/menuAdmin.php');
                             <label class="form-label">Copiloto</label>
                             <select class="form-select" name="copiloto" id="copiloto" required>
                                 <option value="">Seleccione un copiloto</option>
+                                <?php
+                                    $piloto = new Piloto();
+                                    $pilotos = $piloto->consultarPilotos();
+                                    foreach($pilotos as $p)
+                                    {
+                                        echo "<option value='".$p->getId()."'>".$p->getNombre()."</option>";
+                                    }
+                                ?>
                             </select>
                         </div>
 
