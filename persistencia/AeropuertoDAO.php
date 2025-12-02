@@ -29,7 +29,27 @@
                 return $this->ciudad;
         }
 
+        public function consultarListaAeropuertos()
+        {
+            return "
+                select 
+                a.idAeropuerto,
+                a.nombreAeropuerto,
+                a.direccion,
+                c.nombreCiudad,
+                p.nombrePais
+                from 
+                GrAlt_Aeropuerto a
+                INNER JOIN 
+                GrAlt_Ciudad c on a.idCiudad = c.idCiudad
+                INNER JOIN 
+                GrAlt_Pais p on c.idPais = p.idPais
+                ORDER BY
+                p.nombrePais,
+                c.nombreCiudad;
+            ";
 
+        }
         
     }
 ?>

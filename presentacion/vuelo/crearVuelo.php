@@ -49,6 +49,14 @@ include('presentacion/menuAdmin.php');
                             <label class="form-label">Origen</label>
                             <select class="form-select" name="origen" id="origen" required>
                                 <option value="">Seleccione un origen</option>
+                                <?php
+                                    $aeropuerto = new Aeropuerto();
+                                    $aeropuertos = $aeropuerto->consultarListaAeropuertos();
+                                    foreach($aeropuertos as $a)
+                                    {
+                                        echo "<option value='".$a->getId()."'>".$a->getNombre()."</option>";
+                                    }
+                                ?>
                             </select>
                         </div>
 
