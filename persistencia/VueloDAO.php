@@ -197,6 +197,6 @@ class VueloDAO
         fecha,
         cantidadPasajeros
         )values
-        (".$this->piloto.",".$this->origen.",".$this->estado.",".$this->destino.",".$this->copiloto.",".$this->avion.",'".$this->hora."','".$this->fecha."',".$this->cantidad_Pas.");";
+        (".$this->piloto.",".$this->getOrigen().",".$this->estado.",".$this->destino.",".$this->copiloto.",".$this->avion.",'".$this->hora."','".$this->fecha."',".$this->cantidad_Pas.");";
     }
 }
