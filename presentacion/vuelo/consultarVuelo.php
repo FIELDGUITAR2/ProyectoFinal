@@ -7,6 +7,11 @@ if ($_SESSION["rol"] != "admin") {
 }
 
 $error = 0;
+
+if(isset($_POST["actualizarVuelos"]))
+{
+    echo $_POST['idVuelo'];
+}
 ?>
 
 <body>
@@ -136,7 +141,7 @@ $error = 0;
 
                                                         <div class='modal-footer'>
                                                             <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Cerrar</button>
-                                                            <button type='submit' class='btn btn-success'>Guardar cambios</button>
+                                                            <button type='submit' class='btn btn-success' nombre="actualizarVuelos">Guardar cambios</button>
                                                         </div>
 
                                                     </form>
