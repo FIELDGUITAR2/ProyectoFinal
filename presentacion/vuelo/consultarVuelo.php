@@ -82,13 +82,12 @@ $error = 0;
 
                                         echo "</tr>";
                                     ?>
-                                        // MODAL PARA ESTE VUELO
-                                        <div class='modal fade' id='modalEditar<?php $v->getIdVuelo() ?>' tabindex='-1'>
+                                        <?php echo"<div class='modal fade' id='modalEditar{$v->getIdVuelo()}' tabindex='-1'>"?>
                                             <div class='modal-dialog modal-lg'>
                                                 <div class='modal-content'>
 
                                                     <div class='modal-header bg-warning'>
-                                                        <h5 class='modal-title'>Editar vuelo #<?php $v->getIdVuelo() ?></h5>
+                                                        <?php echo "<h5 class='modal-title'>Editar vuelo #{$v->getIdVuelo()}</h5>"?>
                                                         <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
                                                     </div>
 
