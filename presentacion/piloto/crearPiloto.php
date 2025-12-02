@@ -68,7 +68,7 @@ include("presentacion/menuAdmin.php");
                         Pon los datos del piloto y dale en agregar.
                     </p>
 
-                    <form action="" method="post">
+                    <form action="?pid=<?php echo base64_encode('presentacion/piloto/crearPiloto.php')?>" method="post">
 
                         <div class="mb-3">
                             <label class="form-label">Nombres</label>

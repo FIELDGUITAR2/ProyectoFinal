@@ -58,7 +58,7 @@ include('presentacion/menuAdmin.php');
 
                 <div class="card-body">
 
-                    <form action="" method="post">
+                    <form action="?pid=<?php echo base64_encode('presentacion/vuelo/crearVuelo.php') ?>" method="post">
 
                         <!-- Avión -->
                         <div class="mb-3">
