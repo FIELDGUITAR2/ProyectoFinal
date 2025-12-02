@@ -6,6 +6,11 @@ if ($_SESSION["rol"] != "admin") {
     header("Location: ?pid=" . base64_encode("presentacion/noAutorizado.php"));
 }
 
+if(isset($__POST[""]))
+{
+
+}
+
 $error = 0;
 ?>
 
@@ -108,14 +113,6 @@ include('presentacion/menuAdmin.php');
                             </select>
                         </div>
 
-                        <!-- Estado del vuelo -->
-                        <div class="mb-3">
-                            <label class="form-label">Estado del Vuelo</label>
-                            <select class="form-select" name="estadoVuelo" id="estadoVuelo" required>
-                                <option value="">Seleccione un estado</option>
-                            </select>
-                        </div>
-
                         <!-- Fecha -->
                         <div class="mb-3">
                             <label class="form-label">Fecha</label>
@@ -128,7 +125,7 @@ include('presentacion/menuAdmin.php');
                             <input type="time" class="form-control" name="hora" required>
                         </div>
 
-                        <button type="submit" class="btn btn-success w-100">
+                        <button type="submit" class="btn btn-success w-100" name="insertarVuelo">
                             <i class="fa-solid fa-plus-circle"></i> Programar Vuelo
                         </button>
                     </form>
