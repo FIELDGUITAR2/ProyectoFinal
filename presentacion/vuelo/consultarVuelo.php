@@ -21,7 +21,7 @@ $error = 0;
     <div class="row justify-content-center g-4">
 
         <!-- SECCIÓN DE VUELOS -->
-        <div class="col-lg-12 col-md-12">
+        <div class="col-lg-11 col-md-12">
             <div class="card shadow">
 
                 <div class="card-header bg-primary text-white">
@@ -74,6 +74,25 @@ $error = 0;
                 </div>
             </div>
         </div>
+        <?php /*
+        <!-- SECCIÓN EDITAR -->
+        <div class="col-lg-3 col-md-12">
+            <div class="card shadow">
+
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Editar</h4>
+                </div>
+
+                <div class="card-body">
+                    <p class="text-muted">Aquí podrás editar la información de los vuelos seleccionados.</p>
+
+                    <!-- Aquí puedes colocar el formulario de edición -->
+                    <button class="btn btn-success w-100">Editar vuelo</button>
+                </div>
+
+            </div>
+        </div>
+        */ ?>
 
     </div>
 
