@@ -81,7 +81,14 @@ include('presentacion/menuAdmin.php');
                             <label class="form-label">Piloto</label>
                             <select class="form-select" name="piloto" id="piloto" required>
                                 <option value="">Seleccione un piloto</option>
-                                
+                                <?php
+                                    $piloto = new Piloto();
+                                    $pilotos = $piloto->consultarPilotos();
+                                    foreach($pilotos as $p)
+                                    {
+                                        echo "<option value='".$p->getId()."'>".$p->getNombre."</option>";
+                                    }
+                                ?>
                             </select>
                         </div>
 
