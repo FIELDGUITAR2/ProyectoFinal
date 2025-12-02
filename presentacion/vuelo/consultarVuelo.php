@@ -45,6 +45,8 @@ $error = 0;
                                     <th scope="col">Hora</th>
                                     <th scope="col">Fecha</th>
                                     <th scope="col">Cantidad de pasajeros</th>
+                                    <th scope="col">Acciones</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,6 +67,76 @@ $error = 0;
                                         echo "<td>".$v->getFecha()."</td>";
                                         echo "<td>".$v->getCantidadPasajeros()."</td>";
                                         echo "</tr>";
+                                        echo '
+<!-- Modal -->
+<div class="modal fade" id="modalEditar'.$v->getIdVuelo().'" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title">Editar vuelo #'.$v->getIdVuelo().'</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form method="POST" action="modificarVuelo.php">
+        <div class="modal-body">
+
+          <input type="hidden" name="idVuelo" value="'.$v->getIdVuelo().'">
+
+          <div class="row g-3">
+              <div class="col-md-6">
+                  <label>Avión:</label>
+                  <input type="text" class="form-control" name="avion" value="'.$v->getAvion().'" required>
+              </div>
+
+              <div class="col-md-6">
+                  <label>Piloto:</label>
+                  <input type="text" class="form-control" name="piloto" value="'.$v->getPiloto().'" required>
+              </div>
+
+              <div class="col-md-6">
+                  <label>Copiloto:</label>
+                  <input type="text" class="form-control" name="copiloto" value="'.$v->getCopiloto().'" required>
+              </div>
+
+              <div class="col-md-6">
+                  <label>Estado:</label>
+                  <select name="estado" class="form-control">
+                    <option '.$this->selected($v->getEstado(),"Programado").'>Programado</option>
+                    <option '.$this->selected($v->getEstado(),"En curso").'>En curso</option>
+                    <option '.$this->selected($v->getEstado(),"Finalizado").'>Finalizado</option>
+                  </select>
+              </div>
+
+              <div class="col-md-6">
+                  <label>Hora:</label>
+                  <input type="time" class="form-control" name="hora" value="'.$v->getHora().'" required>
+              </div>
+
+              <div class="col-md-6">
+                  <label>Fecha:</label>
+                  <input type="date" class="form-control" name="fecha" value="'.$v->getFecha().'" required>
+              </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button class="btn btn-success" type="submit">Guardar cambios</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>';
+
+                                        echo "<td class='text-center'>
+                                                <button class='btn btn-warning btn-sm' data-bs-toggle='modal' data-bs-target='#modalEditar".$v->getIdVuelo()."'>
+                                                    Editar
+                                                </button>
+                                              </td>";
                                     }
                                 ?>
                             </tbody>
