@@ -199,4 +199,20 @@ class VueloDAO
         )values
         (".$this->piloto.",".$this->getOrigen().",".$this->estado.",".$this->destino.",".$this->copiloto.",".$this->avion.",'".$this->hora."','".$this->fecha."',".$this->cantidad_Pas.");";
     }
+
+    public function actualizarVuelo()
+    {
+        return "update 
+                GrAlt_Vuelo 
+                set
+                idOrigen = ".$this->origen.",
+                idDestino = ".$this->destino.",
+                idCopiloto = ".$this->copiloto.",
+                idEstado = ".$this->estado.",
+                idAvion = ".$this->avion.",
+                hora = '".$this->hora."',
+                fecha = '".$this->fecha."'
+                where
+                idVuelo = ".$this->getIdVuelo().";";
+    }
 }

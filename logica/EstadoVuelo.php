@@ -1,4 +1,6 @@
 <?php
+    require_once('persistencia/Conexion.php');
+    require_once('persistencia/EstadoVueloDAO.php');
     class EstadoVuelo
     {
         private $idEstado;
@@ -53,7 +55,21 @@
 
         public function consultarEstadosVuelo()
         {
-            
+            $conexion = new Conexion();
+            $evDAO = new EstadoVueloDAO();
+            $conexion->abrir();
+            $listEv = array();
+            $conexion->ejecutar($evDAO->consultarEstadosVuelo());
+            while(($dato = $conexion->registro()) != null)
+            {
+                $ev = new EstadoVuelo(
+                    $dato[0],
+                    $dato[1]
+                );
+                array_push($listEv,$ev);
+            }
+            $conexion->cerrar();
+            return $listEv;
         }
     }
 ?>

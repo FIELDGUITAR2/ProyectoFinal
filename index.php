@@ -6,6 +6,7 @@ require_once('logica/Piloto.php');
 require_once('logica/Pasajero.php');
 require_once('logica/Persona.php');
 require_once('logica/EstadoPersona.php');
+require_once('logica/EstadoVuelo.php');
 require_once('logica/Vuelo.php');
 require_once('logica/Avion.php');
 require_once('logica/Aeropuerto.php');

@@ -1,5 +1,5 @@
 <?php
-    class EstadoVuelo
+    class EstadoVueloDAO
     {
         private $idEstado;
         private $nombre;

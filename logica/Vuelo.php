@@ -194,6 +194,27 @@ class Vuelo {
         return $res;
     }
 
+    public function actualizarVuelo()
+    {
+        $conexion = new Conexion();
+        $conexion->abrir();
+        $vueloDAO = new VueloDAO(
+            $this->idVuelo,
+            $this->avion,
+            $this->piloto,
+            $this->copiloto,
+            $this->origen,
+            $this->destino,
+            $this->estado,
+            $this->hora,
+            $this->fecha,
+            $this->cantidad_Pas
+        );
+        $res = $conexion->ejecutarTF($vueloDAO->insertarVuelo());
+        $conexion->cerrar();
+        return $res;
+    }
+
 }
 
 
