@@ -6,19 +6,20 @@ on:
       - main  
 
 jobs:
-  deploy:
+    deploy:
+    needs: build
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: checkout del código
-        uses: actions/checkout@v3
+    - name: Descargar repositorio
+      uses: actions/checkout@v3
 
-      - name: deploy al servidor FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
-          server-dir: /
-          local-dir: ./
+    - name: Subir archivos por FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        protocol: ftps
+
