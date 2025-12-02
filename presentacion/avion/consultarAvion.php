@@ -25,22 +25,29 @@ $error = 0;
                                 class="table table-primary">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Column 1</th>
-                                        <th scope="col">Column 2</th>
-                                        <th scope="col">Column 3</th>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre Avion</th>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Cant combustible</th>
+                                        <th scope="col">Cant Pasajeros</th>
+                                        <th scope="col">Accion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="">
-                                        <td scope="row">R1C1</td>
-                                        <td>R1C2</td>
-                                        <td>R1C3</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td scope="row">Item</td>
-                                        <td>Item</td>
-                                        <td>Item</td>
-                                    </tr>
+                                    <?php
+                                        $avion = new Avion();
+                                        $aviones = $avion->consultarAviones();
+                                        foreach($aviones as $a)
+                                        {
+                                            echo "<tr>";
+                                            echo "<td>".$a->getId()."</td>";
+                                            echo "<td>".$a->getNombreAvion()."</td>";
+                                            echo "<td>".$a->getTipoAvion()."</td>";
+                                            echo "<td>".$a->getCantCombustible()."</td>";
+                                            echo "<td>".$a->getCapPasajeros()."</td>";
+                                            echo "</tr>";
+                                        }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
