@@ -95,7 +95,8 @@ class Boleto
         $this->precio = $precio;
     }
 
-    public function consultarBoleto() {
+    public function consultarBoleto()
+    {
 
         $conexion = new Conexion();
         $boletoDAO = new BoletoDAO();
@@ -103,8 +104,7 @@ class Boleto
         $conexion->abrir();
         $conexion->ejecutar($boletoDAO->consultarBoleto());
         $listaBoletos = array();
-        while(($dato = $conexion->registro())!=null)
-        {
+        while (($dato = $conexion->registro()) != null) {
             $vuelo = new Vuelo();
             $vuelo->setHora($dato[3]);
             $vuelo->setFecha($dato[4]);
@@ -116,10 +116,33 @@ class Boleto
                 $vuelo,
                 $dato[5]
             );
-            array_push($listaBoletos,$boleto);
+            array_push($listaBoletos, $boleto);
         }
         $conexion->cerrar();
         return $listaBoletos;
+    }
+
+    public function consultarBoletoFPDF()
+    {
+        $conexion = new Conexion();
+        $boletoDAO = new BoletoDAO();
+        $boletoDAO->setPasajero($this->getPasajero());
+        $conexion->abrir();
+        $conexion->ejecutar($boletoDAO->consultarBoleto());
+        $dato = $conexion->registro();
+        $vuelo = new Vuelo();
+        $vuelo->setHora($dato[3]);
+        $vuelo->setFecha($dato[4]);
+        $boleto = new Boleto(
+            $dato[0],
+            $dato[1],
+            $dato[2],
+            $this->getPasajero(),
+            $vuelo,
+            $dato[5]
+        );
+        
+        $conexion->cerrar();
     }
 }
 /*

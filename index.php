@@ -48,7 +48,8 @@ $paginas_sin_autenticacion = array(
     "presentacion/inicio.php",
     "presentacion/autenticar.php",
     "presentacion/noAutorizado.php",
-    "presentacion/cliente/registrarCliente.php"
+    "presentacion/cliente/registrarCliente.php",
+    "presentacion/boletos/reporteBoleto.php"
     /*
     "presentacion/autenticar.php",
     ,
@@ -66,7 +67,8 @@ $paginas_con_autenticacion = array(
     "presentacion/vuelo/crearVuelo.php",
     "presentacion/boletos/misBoletos.php",
     "presentacion/avion/consultarAvion.php",
-    "presentacion/avion/crearAvion.php"
+    "presentacion/avion/crearAvion.php",
+    
     /*"presentacion/sesionMedico.php",
     "presentacion/sesionPaciente.php",
     "presentacion/cita/consultarCita.php",
