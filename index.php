@@ -10,6 +10,7 @@ require_once('logica/EstadoVuelo.php');
 require_once('logica/Vuelo.php');
 require_once('logica/Avion.php');
 require_once('logica/Aeropuerto.php');
+require_once('logica/TipoAvion.php');
 /*
 require ("logica/Especialidad.php");
 require ("logica/Medico.php");

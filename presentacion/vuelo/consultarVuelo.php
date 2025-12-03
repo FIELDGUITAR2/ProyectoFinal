@@ -96,7 +96,6 @@ if (isset($_POST["actualizarVuelo"])) {
                                                 </button>
                                             </td>
                                         </tr>
-
                                         <!-- MODAL -->
                                         <div class="modal fade" id="modalEditar<?= $v->getIdVuelo(); ?>" tabindex="-1">
                                             <div class="modal-dialog modal-lg">
@@ -194,7 +193,6 @@ if (isset($_POST["actualizarVuelo"])) {
                                                 </div>
                                             </div>
                                         </div>
-
                                     <?php } ?>
                                 </tbody>
                             </table>

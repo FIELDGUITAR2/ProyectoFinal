@@ -102,4 +102,22 @@ class Avion
         $conexion->cerrar();
         return $aviones;
     }
+    public function consultarAvion()
+    {
+        $conexion = new Conexion();
+        $avionDAO = new AvionDAO();
+        $avionDAO->setId($this->getId());
+        $conexion->abrir();
+        $conexion->ejecutar($avionDAO->consultarAvion());
+        $dato = $conexion->registro();
+            $avion = new Avion(
+                $dato[0],
+                $dato[4],
+                $dato[1],
+                $dato[2],
+                $dato[3]
+            );
+        $conexion->cerrar();
+        return $avion;
+    }
 }

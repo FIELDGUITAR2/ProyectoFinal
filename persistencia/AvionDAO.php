@@ -95,5 +95,22 @@ class AvionDAO
             INNER JOIN GrAlt_TipoAvion t on a.idTipo = t.idTipo;
         ";
     }
+
+    public function consultarAvion()
+    {
+        return "
+            SELECT 
+            a.idAvion,
+            a.nombreAvion as Avion,
+            a.capacidadPasajeros as Capacidad,
+            a.cantCombustible as `Capacidad de combustible`,
+            t.nombreTipo as `Tipo avion`
+            from
+            GrAlt_Avion a 
+            INNER JOIN GrAlt_TipoAvion t on a.idTipo = t.idTipo;
+            WHERE
+            a.idAvion = ".$this->getId()."
+        ";
+    }
 }
 ?>
