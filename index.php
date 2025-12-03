@@ -82,7 +82,7 @@ $paginas_con_autenticacion = array(
     "presentacion/boletos/misBoletos.php",
     "presentacion/avion/consultarAvion.php",
     "presentacion/avion/crearAvion.php",
-    
+    "presentacion/cliente/actualizarCliente.php"
     /*"presentacion/sesionMedico.php",
     "presentacion/sesionPaciente.php",
     "presentacion/cita/consultarCita.php",

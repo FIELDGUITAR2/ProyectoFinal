@@ -1,52 +1,68 @@
 <?php
-if (isset($_GET["sesion"])) {
-	if ($_GET["sesion"] == "false") {
-		session_destroy();
-	}
+session_start();
+
+// Sanitizar GET
+$sesion = filter_input(INPUT_GET, "sesion", FILTER_SANITIZE_STRING);
+
+if ($sesion === "false") {
+	session_destroy();
+	header("Location: index.php");
+	exit;
 }
 
 $error = false;
 
+// Verificar envío del formulario
 if (isset($_POST["autenticar"])) {
 
-	$correo = $_POST["correo"];
-	$clave = $_POST["clave"];
+	// Sanitizar entradas
+	$correo = filter_input(INPUT_POST, "correo", FILTER_VALIDATE_EMAIL);
+	$clave  = filter_input(INPUT_POST, "clave", FILTER_SANITIZE_STRING);
 
-	// --- Intento de autenticación: ADMIN ---
-	$admin = new Admin("", "", "", $correo, $clave);
+	if (!$correo || !$clave) {
+		$error = true;
+	} else {
 
-	if ($admin->autenticar()) {
-		$_SESSION["id"] = $admin->getId();
-		$_SESSION["rol"] = "admin";
-		header("Location: ?pid=" . base64_encode("presentacion/sesionAdmin.php"));
-		exit();
-	}
+		// --- ADMIN ---
+		$admin = new Admin("", "", "", $correo, $clave);
 
-	// --- Intento de autenticación: PILOTO ---
-	$piloto = new Piloto("", "", "", $correo, $clave);
+		if ($admin->autenticar()) {
+			$_SESSION["id"] = intval($admin->getId());
+			$_SESSION["rol"] = "admin";
 
-	if ($piloto->autenticar()) {
-		$_SESSION["id"] = $piloto->getId();
-		$_SESSION["rol"] = "piloto";
-		header("Location: ?pid=" . base64_encode("presentacion/sesionPiloto.php"));
-		exit();
-	}
-
-	// --- Intento de autenticación: PASAJERO ---
-	$pasajero = new Pasajero("", "", "", $correo, $clave);
-
-	if ($pasajero->autenticar()) {
-			$_SESSION["estadoPersona"] = $pasajero->getIdEstadoPersona();
-			$_SESSION["id"] = $pasajero->getId();
-			$_SESSION["rol"] = "pasajero";
-			header("Location: ?pid=" . base64_encode("presentacion/sesionPasajero.php"));
-			exit();
+			header("Location: ?pid=" . base64_encode("presentacion/sesionAdmin.php"));
+			exit;
 		}
 
-	// Si nadie autenticó
-	$error = true;
+		// --- PILOTO ---
+		$piloto = new Piloto("", "", "", $correo, $clave);
+
+		if ($piloto->autenticar()) {
+			$_SESSION["id"] = intval($piloto->getId());
+			$_SESSION["rol"] = "piloto";
+
+			header("Location: ?pid=" . base64_encode("presentacion/sesionPiloto.php"));
+			exit;
+		}
+
+		// --- PASAJERO ---
+		$pasajero = new Pasajero("", "", "", $correo, $clave);
+
+		if ($pasajero->autenticar()) {
+			$_SESSION["id"] = intval($pasajero->getId());
+			$_SESSION["estadoPersona"] = intval($pasajero->getIdEstadoPersona());
+			$_SESSION["rol"] = "pasajero";
+
+			header("Location: ?pid=" . base64_encode("presentacion/sesionPasajero.php"));
+			exit;
+		}
+
+		// Ningún rol autenticó
+		$error = true;
+	}
 }
 ?>
+
 
 
 <body class="bg-light">
@@ -62,16 +78,17 @@ if (isset($_POST["autenticar"])) {
 						<h4>Autenticar</h4>
 					</div>
 					<div class="card-body">
-						<form action="?pid=<?php echo base64_encode("presentacion/autenticar.php") ?>" method="post">
+						<form action="?pid=<?php echo base64_encode('presentacion/autenticar.php') ?>" method="post">
 							<div class="mb-3">
-								<input type="email" class="form-control" name="correo" placeholder="Correo">
+								<input type="email" class="form-control" name="correo" placeholder="Correo" required>
 							</div>
 							<div class="mb-3">
-								<input type="password" class="form-control" name="clave" placeholder="Clave">
+								<input type="password" class="form-control" name="clave" placeholder="Clave" required>
 							</div>
 							<button type="submit" class="btn btn-warning" name="autenticar">Autenticar</button>
 							<a href="?pid=<?php echo base64_encode('presentacion/cliente/registrarCliente.php') ?>">Registrarse</a>
 						</form>
+
 						<?php
 						if ($error) {
 							echo "<div class='alert alert-danger mt-3' role='alert'>Credenciales incorrectas</div>";

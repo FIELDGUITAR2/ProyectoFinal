@@ -75,7 +75,13 @@ class Avion
     public function insertarAvion()
     {
         $conexion = new Conexion();
-        $avionDAO = new AvionDAO();
+        $avionDAO = new AvionDAO(
+            "",
+            $this->getTipoAvion(),
+            $this->getNombreAvion(),
+            $this->getCapPasajeros(),
+            $this->getCantCombustible()
+        );
         $conexion->abrir();
         $res = $conexion->ejecutarTF($avionDAO->insetarAvion());
         $conexion->cerrar();

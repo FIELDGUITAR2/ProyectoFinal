@@ -87,8 +87,7 @@ $p = $pasajero->consultar();
 
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item"
-                                    href="?pid=<?php echo base64_encode('presentacion/pasajero/editarPerfil.php') ?>">
-
+                                    href="?pid=<?php echo base64_encode('presentacion/cliente/actualizarCliente.php') ?>">
                                     Editar Perfil</a></li>
 
                             <li>
