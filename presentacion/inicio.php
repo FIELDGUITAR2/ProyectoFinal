@@ -33,12 +33,15 @@
           <i class="bi bi-person-circle me-1"></i>Iniciar sesion
         </button>
       </li>
+      <?php /*
       <li class="nav-item" role="presentation">
         <button class="nav-link text-success fw-semibold" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages"
           type="button" role="tab" aria-controls="messages" aria-selected="false">
           <i class="bi bi-chat-left-text-fill me-1"></i>Mensajes
         </button>
       </li>
+      */ ?>
+      
     </ul>
   </div>
 
@@ -122,13 +125,14 @@
         </div>
       </div>
     </div>
-
+<?php /* ?>
     <div class="tab-pane fade" id="messages" role="tabpanel" aria-labelledby="messages-tab">
       <div class="card border-0 shadow-sm p-4">
         <h4 class="text-success fw-bold">Centro de mensajes</h4>
         <p class="text-muted">Aquí verás tus notificaciones, actualizaciones y ofertas exclusivas.</p>
       </div>
     </div>
+    <?php */ ?>
   </div>
 
   <!-- Sección adaptable -->

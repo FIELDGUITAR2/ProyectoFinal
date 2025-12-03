@@ -46,6 +46,13 @@ require ("logica/EstadoCita.php");
 <!-- Google Charts -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+<style>
+  #carruselPaisajes .carousel-item img {
+    height: 420px;
+    object-fit: cover;
+  }
+</style>
+
 </head>
 
 <?php 
