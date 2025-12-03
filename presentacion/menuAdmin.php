@@ -87,10 +87,12 @@ $admin->consultar();
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#">Editar Perfil</a></li>
-                            <li><a class="dropdown-item"
-                                    href="?pid=<?php echo base64_encode('presentacion/autenticar.php') ?>&sesion=false">
-                                    Cerrar Sesión
-                                </a></li>
+                            <li>
+                                <a class="dropdown-item text-danger" href="?pid=<?php echo base64_encode('presentacion/cerrar.php')?> ">
+                                    <i class="fa-solid fa-right-from-bracket me-2"></i> Salir
+                                </a>
+                            </li>
+
                         </ul>
                     </li>
                 </ul>

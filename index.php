@@ -49,7 +49,8 @@ $paginas_sin_autenticacion = array(
     "presentacion/autenticar.php",
     "presentacion/noAutorizado.php",
     "presentacion/cliente/registrarCliente.php",
-    "presentacion/boletos/reporteBoleto.php"
+    "presentacion/boletos/reporteBoleto.php",
+    "presentacion/cerrar.php"
     /*
     "presentacion/autenticar.php",
     ,
