@@ -10,19 +10,19 @@ if ($_SESSION["rol"] != "admin") {
     include("presentacion/menuAdmin.php");
     ?>
 
-    <div class="container my-4">
-    <div class="row justify-content-between align-items-center">
+    <div class="container m-4">
+    <div class="row justify-content-center text-center">
         <div class="col-md-8">
             <h1 class="fw-bold mb-0">Estadísticas del Administrador</h1>
             <p class="text-muted">Panel de control general</p>
-        </div>
 
-        <div class="col-md-4 text-end">
-            <img src="img/admin.png" alt="Admin Image" class="img-fluid" style="max-width: 150px;">
+            <div class="d-flex justify-content-center">
+                <?php include('presentacion/vuelo/graficasVuelos.php'); ?>
+            </div>
         </div>
     </div>
+</div>
 
-    <hr>
 </div>
 
 

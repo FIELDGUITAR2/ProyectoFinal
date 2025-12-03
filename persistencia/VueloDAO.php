@@ -214,4 +214,17 @@ class VueloDAO
                 where
                 idVuelo = ".$this->getIdVuelo().";";
     }
+
+    public function consultarProOrigen()
+    {
+        return "
+        SELECT 
+        a.nombreAeropuerto AS destino,
+        COUNT(v.idVuelo) AS cantidad_vuelos
+        FROM GrAlt_Vuelo v
+        JOIN GrAlt_Aeropuerto a ON v.idDestino = a.idAeropuerto
+        GROUP BY a.nombreAeropuerto
+        ORDER BY cantidad_vuelos DESC;
+        ";
+    }
 }

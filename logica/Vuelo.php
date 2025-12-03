@@ -3,7 +3,8 @@
 require_once('persistencia/Conexion.php');
 require_once('persistencia/VueloDAO.php');
 
-class Vuelo {
+class Vuelo
+{
     private $idVuelo;
     private $avion;
     private $piloto;
@@ -13,8 +14,8 @@ class Vuelo {
     private $estado;
     private $hora;
     private $fecha;
-    private $cantidad_Pas;   
-    
+    private $cantidad_Pas;
+
     public function __construct(
         $idVuelo = "",
         $avion = "",
@@ -40,84 +41,104 @@ class Vuelo {
     }
 
     // ----- GETTERS -----
-    public function getIdVuelo() {
+    public function getIdVuelo()
+    {
         return $this->idVuelo;
     }
 
-    public function getAvion() {
+    public function getAvion()
+    {
         return $this->avion;
     }
 
-    public function getPiloto() {
+    public function getPiloto()
+    {
         return $this->piloto;
     }
 
-    public function getCopiloto() {
+    public function getCopiloto()
+    {
         return $this->copiloto;
     }
 
-    public function getOrigen() {
+    public function getOrigen()
+    {
         return $this->origen;
     }
 
-    public function getDestino() {
+    public function getDestino()
+    {
         return $this->destino;
     }
 
-    public function getEstado() {
+    public function getEstado()
+    {
         return $this->estado;
     }
 
-    public function getHora() {
+    public function getHora()
+    {
         return $this->hora;
     }
 
-    public function getFecha() {
+    public function getFecha()
+    {
         return $this->fecha;
     }
 
-    public function getCantidadPasajeros() {
+    public function getCantidadPasajeros()
+    {
         return $this->cantidad_Pas;
     }
 
     // ----- SETTERS (si los quieres quitar me dices) -----
-    public function setIdVuelo($idVuelo) {
+    public function setIdVuelo($idVuelo)
+    {
         $this->idVuelo = $idVuelo;
     }
 
-    public function setAvion($avion) {
+    public function setAvion($avion)
+    {
         $this->avion = $avion;
     }
 
-    public function setPiloto($piloto) {
+    public function setPiloto($piloto)
+    {
         $this->piloto = $piloto;
     }
 
-    public function setCopiloto($copiloto) {
+    public function setCopiloto($copiloto)
+    {
         $this->copiloto = $copiloto;
     }
 
-    public function setOrigen($origen) {
+    public function setOrigen($origen)
+    {
         $this->origen = $origen;
     }
 
-    public function setDestino($destino) {
+    public function setDestino($destino)
+    {
         $this->destino = $destino;
     }
 
-    public function setEstado($estado) {
+    public function setEstado($estado)
+    {
         $this->estado = $estado;
     }
 
-    public function setHora($hora) {
+    public function setHora($hora)
+    {
         $this->hora = $hora;
     }
 
-    public function setFecha($fecha) {
+    public function setFecha($fecha)
+    {
         $this->fecha = $fecha;
     }
 
-    public function setCantidadPasajeros($cantidad) {
+    public function setCantidadPasajeros($cantidad)
+    {
         $this->cantidad_Pas = $cantidad;
     }
 
@@ -128,8 +149,7 @@ class Vuelo {
         $conexion->abrir();
         $conexion->ejecutar($vueloDAO->consultarVuelos());
         $listaVuelos = array();
-        while(($dato = $conexion->registro())!=null)
-        {
+        while (($dato = $conexion->registro()) != null) {
             $vuelo = new Vuelo(
                 $dato[0],
                 $dato[7],
@@ -142,7 +162,7 @@ class Vuelo {
                 $dato[3],
                 $dato[8]
             );
-            array_push($listaVuelos,$vuelo);
+            array_push($listaVuelos, $vuelo);
         }
         $conexion->cerrar();
         return $listaVuelos;
@@ -154,8 +174,7 @@ class Vuelo {
         $conexion->abrir();
         $conexion->ejecutar($vueloDAO->consultarVuelosProximos());
         $listaVuelos = array();
-        while(($dato = $conexion->registro())!=null)
-        {
+        while (($dato = $conexion->registro()) != null) {
             $vuelo = new Vuelo(
                 $dato[0],
                 "",
@@ -167,7 +186,7 @@ class Vuelo {
                 $dato[4],
                 $dato[3]
             );
-            array_push($listaVuelos,$vuelo);
+            array_push($listaVuelos, $vuelo);
         }
         $conexion->cerrar();
         return $listaVuelos;
@@ -215,6 +234,19 @@ class Vuelo {
         return $res;
     }
 
+    public function consultarPorOrigen()
+    {
+        $conexion = new Conexion();
+        $conexion->abrir();
+        $vueloDAO = new VueloDAO();
+        $conexion->ejecutar($vueloDAO->consultarProOrigen());
+        $vuelos = array();
+        while (($tupla = $conexion->registro()) != null) {
+            $vuelos[] = $tupla;
+        }
+        $conexion->cerrar();
+        return $vuelos;
+    }
 }
 
 
@@ -238,4 +270,3 @@ INNER JOIN GrAlt_Aeropuerto des on v.idDestino = des.idAeropuerto
 INNER JOIN GrAlt_Avion av on v.idAvion = av.idAvion
 ORDER BY v.idVuelo;
 */
-?>
