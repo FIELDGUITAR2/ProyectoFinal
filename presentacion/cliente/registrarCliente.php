@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 if (isset($_GET["sesion"]) && $_GET["sesion"] == "false") {
     session_destroy();
