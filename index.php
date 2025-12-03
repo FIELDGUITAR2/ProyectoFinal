@@ -11,6 +11,7 @@ require_once('logica/Vuelo.php');
 require_once('logica/Avion.php');
 require_once('logica/Aeropuerto.php');
 require_once('logica/TipoAvion.php');
+require_once('logica/Boleto.php');
 /*
 require ("logica/Especialidad.php");
 require ("logica/Medico.php");
@@ -46,7 +47,8 @@ require ("logica/EstadoCita.php");
 $paginas_sin_autenticacion = array(
     "presentacion/inicio.php",
     "presentacion/autenticar.php",
-    "presentacion/noAutorizado.php"
+    "presentacion/noAutorizado.php",
+    "presentacion/cliente/registrarCliente.php"
     /*
     "presentacion/autenticar.php",
     ,

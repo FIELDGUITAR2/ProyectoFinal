@@ -85,4 +85,23 @@ class Pasajero extends Persona
         }
         return $dPas;
     }
+
+    public function registrar()
+    {
+        $conexion = new Conexion();
+        $pasajeroDAO = new PasajeroDAO(
+            "",
+            $this->getNombre(),
+            $this->getApellido(),
+            $this->getCorreo(),
+            $this->getClave(),
+            "",
+            2,
+            $this->getTelefono()
+        );
+        $conexion->abrir();
+        $res=$conexion->ejecutarTF($pasajeroDAO->registrar());
+        $conexion->cerrar();
+        return $res;
+    }
 }

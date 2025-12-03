@@ -42,6 +42,7 @@ $p = $pasajero->consultar();
                     </li>
 
                     <!-- Vuelos Disponibles -->
+                     <!--
                     <li class="nav-item">
                         <a class="nav-link" 
                            href="?pid=<?php echo base64_encode('presentacion/sesionPasajero.php')?>">
@@ -49,7 +50,7 @@ $p = $pasajero->consultar();
                             <i class="fa-solid fa-plane-departure"></i> Vuelos Disponibles
                         </a>
                     </li>
-
+-->
                     <!-- Mis Boletos -->
                     <li class="nav-item">
                         <a class="nav-link" 

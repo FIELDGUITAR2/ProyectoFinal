@@ -7,7 +7,7 @@
         {
             $this->idTipo = $idTipo;
             $this->nombre = $nombre;
-            throw new \Exception('Not implemented');
+            
         }
         
 
@@ -53,7 +53,7 @@
 
         public function consultarTipos()
         {
-                return "select
+                return "SELECT
                         idTipo,
                         nombreTipo
                         from

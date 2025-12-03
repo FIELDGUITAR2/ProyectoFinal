@@ -36,11 +36,12 @@ if (isset($_POST["autenticar"])) {
 	$pasajero = new Pasajero("", "", "", $correo, $clave);
 
 	if ($pasajero->autenticar()) {
-		$_SESSION["id"] = $pasajero->getId();
-		$_SESSION["rol"] = "pasajero";
-		header("Location: ?pid=" . base64_encode("presentacion/sesionPasajero.php"));
-		exit();
-	}
+			$_SESSION["estadoPersona"] = $pasajero->getIdEstadoPersona();
+			$_SESSION["id"] = $pasajero->getId();
+			$_SESSION["rol"] = "pasajero";
+			header("Location: ?pid=" . base64_encode("presentacion/sesionPasajero.php"));
+			exit();
+		}
 
 	// Si nadie autenticó
 	$error = true;
@@ -48,49 +49,8 @@ if (isset($_POST["autenticar"])) {
 ?>
 
 
-<!--
-
-<body>
-	<?php // include("presentacion/encabezado.php"); ?>
-	<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-		<div class="d-flex justify-content-center mt-4">
-			<div class="card border-0 shadow-sm p-4" style="max-width: 380px; width: 100%;">
-
-				<img src="img/AltairAir.png" alt="Altair Air" class="img-fluid rounded mb-3">
-
-				<div class="card-body">
-					<h4 class="card-title text-center mb-3 text-success">Iniciar sesión</h4>
-
-					<form action="?pid=<?php // echo base64_encode('presentacion/autenticar.php') ?>" method="POST">
-						<div class="mb-3">
-							<label for="email" class="form-label">Correo electrónico</label>
-							<input type="email" class="form-control" id="email" name="email"
-								placeholder="tucorreo@example.com" required>
-						</div>
-
-						<div class="mb-3">
-							<label for="clave" class="form-label">Contraseña</label>
-							<input type="password" class="form-control" id="clave" name="clave"
-								placeholder="••••••••" required>
-						</div>
-
-						<button type="submit" class="btn w-100"
-							style="background-color: #1B5E20; color: #FFFDE7;"
-							name="autenticar">
-							Ingresar
-						</button>
-					</form>
-				</div>
-
-			</div>
-		</div>
-	</div>
-</body>
--->
-
-
 <body class="bg-light">
-	
+
 	<?php include("presentacion/encabezado.php"); ?>
 
 	<div class="container my-5">
@@ -103,15 +63,16 @@ if (isset($_POST["autenticar"])) {
 					</div>
 					<div class="card-body">
 						<form action="?pid=<?php echo base64_encode("presentacion/autenticar.php") ?>" method="post">
-							<div class="mb-3">								
+							<div class="mb-3">
 								<input type="email" class="form-control" name="correo" placeholder="Correo">
 							</div>
 							<div class="mb-3">
 								<input type="password" class="form-control" name="clave" placeholder="Clave">
-							</div>							
+							</div>
 							<button type="submit" class="btn btn-warning" name="autenticar">Autenticar</button>
+							<a href="?pid=<?php echo base64_encode('presentacion/cliente/registrarCliente.php') ?>">Registrarse</a>
 						</form>
-    					<?php
+						<?php
 						if ($error) {
 							echo "<div class='alert alert-danger mt-3' role='alert'>Credenciales incorrectas</div>";
 						}
@@ -122,4 +83,5 @@ if (isset($_POST["autenticar"])) {
 		</div>
 	</div>
 </body>
+
 </html>

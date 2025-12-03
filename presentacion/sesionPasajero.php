@@ -8,6 +8,7 @@ if ($_SESSION["rol"] != "pasajero") {
     <?php
     include("presentacion/encabezado.php");
     include("presentacion/menuPasajero.php");
+    
     ?>
 
     <div class="container my-4">

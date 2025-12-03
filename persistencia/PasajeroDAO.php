@@ -65,4 +65,19 @@ class PasajeroDAO extends PersonaDAO
         idPasajero = ".$this->getId().";
         ";
     }
+
+    public function registrar()
+    {
+        return "insert 
+        into 
+        GrAlt_Pasajero(nombres,apellidos,correo,clave,telefono,idEstadoPersona)
+                values
+                ('".$this->getNombre().
+                "','".$this->getApellido().
+                "','".$this->getCorreo().
+                "',md5('".$this->getClave().
+                "'),'".$this->getTelefono().
+                "',".$this->getIdEstadoPersona().
+                ");";
+    }
 }
