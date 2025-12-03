@@ -1,5 +1,6 @@
 <?php
 require ('fpdf/fpdf.php');
+include ("phpqrcode/qrlib.php"); //libreria qr
 
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
@@ -12,8 +13,11 @@ $pdf->AddPage();
 $pdf->SetFont("Times", "B", 20);
 $pdf->Cell(0, 12, "Boleto", 0, 1, "C");
 
+QRcode::png('http://g6.itiud.org/', 'imagenes/qr.png'); 
+
 // Logo
 $pdf->Image("img/AltairAir.png", 10, 18, 40);
+$pdf -> Image("imagenes/qr.png", 166, 10, 40);
 
 // Mover cursor abajo del logo
 $pdf->SetY(18 + 40 + 6);

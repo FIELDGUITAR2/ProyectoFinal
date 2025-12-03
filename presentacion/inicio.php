@@ -46,7 +46,61 @@
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <div class="card border-0 shadow-sm p-4">
         <h4 class="text-success fw-bold">Bienvenido a Altair Air</h4>
-        <p class="text-muted">Explora nuestros destinos, promociones y servicios premium.</p>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <div id="carruselPaisajes" class="carousel slide" data-bs-ride="carousel">
+
+          <!-- Indicadores -->
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carruselPaisajes" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#carruselPaisajes" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carruselPaisajes" data-bs-slide-to="2"></button>
+          </div>
+
+          <!-- Slides -->
+          <div class="carousel-inner">
+
+            <div class="carousel-item active">
+              <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200" class="d-block w-100" alt="Montañas">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Montañas</h5>
+                <p>Paisaje natural lleno de vida.</p>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200" class="d-block w-100" alt="Bosque">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Bosque</h5>
+                <p>Un lugar perfecto para respirar aire puro.</p>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200" class="d-block w-100" alt="Playa">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Playa</h5>
+                <p>El sonido relajante de las olas.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Controles -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#carruselPaisajes" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+
+          <button class="carousel-control-next" type="button" data-bs-target="#carruselPaisajes" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+
+        </div>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
       </div>
     </div>
 
@@ -58,7 +112,7 @@
           <img src="img/AltairAir.png" alt="Altair Air" class="img-fluid rounded mb-3">
 
           <div class="card-body">
-            
+
 
             <a href="?pid=<?php echo base64_encode('presentacion/autenticar.php') ?>">
               <h4 class="card-title text-center mb-3 text-success">Iniciar sesión</h4>
