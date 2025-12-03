@@ -92,6 +92,9 @@ $p = $pasajero->consultar();
 
                                 Editar Perfil</a></li>
 
+                                <li><a class="dropdown-item text-danger" href="?salir=true"> <i
+								class="fa-solid fa-right-from-bracket me-2"></i> Salir
+						</a></li>
                             <li><a class="dropdown-item" 
                                    href="?pid=<?php echo base64_encode('presentacion/autenticar.php')?>&sesion=false">
 
