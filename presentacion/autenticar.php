@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 // Sanitizar GET
 $sesion = filter_input(INPUT_GET, "sesion", FILTER_SANITIZE_STRING);
